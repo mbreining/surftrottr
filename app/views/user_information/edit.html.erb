@@ -1,0 +1,70 @@
+<div class="layout1">
+  <div class="main_container">
+
+    <%= render "shared/error_messages", :target => @user_information %>
+
+	<div class="myform">
+      <%= form_for :user_information do |form| %> 
+		<h1>Update your personal information</h1>
+		<p class="description">Use this form to update your name and location</p>
+
+		<div class="legend">
+		  <span id="meaning">required field</span><span id="symbol">*</span>
+		  <div class="spacer"></div>
+		</div>
+		
+		<div class="row">
+		  <label>
+		    First name
+			<span class="required_field">*</span>
+			<span class="description">Your first name</span>
+		  </label>
+        <%= form.text_field :first_name,
+                    :size => Surftrottr::Application.config.html_text_field_size,
+                    :maxlength => Surftrottr::Application.config.db_string_max_length,
+                    :class => "text" %>
+		  <div class="spacer"></div>
+		</div>
+		<div class="row">
+		  <label>
+			Last name
+		    <span class="description">Your last name</span>
+		  </label>
+        <%= form.text_field :last_name,
+                    :size => Surftrottr::Application.config.html_text_field_size,
+                    :maxlength => Surftrottr::Application.config.db_string_max_length,
+                    :class => "text" %>
+		  <div class="spacer"></div>
+		</div>
+		<div class="row">
+		  <label>
+		    City
+		    <span class="required_field">*</span>
+			<span class="description">Your city</span>
+		  </label>
+        <%= form.text_field :city,
+                    :size => Surftrottr::Application.config.html_text_field_size,
+                    :maxlength => Surftrottr::Application.config.db_string_max_length,
+                    :class => "text" %>
+		  <div class="spacer"></div>
+		</div>
+		<div class="row">
+		  <label>
+			State
+			<span class="required_field">*</span>
+			<span class="description">Your state</span>
+		  </label>
+        <%= form.text_field :state,
+                    :size => Surftrottr::Application.config.html_text_field_size,
+                    :maxlength => Surftrottr::Application.config.db_string_max_length,
+                    :class => "text" %>
+		  <div class="spacer"></div>
+		</div>
+		  
+		<%= submit_tag "Update", :class => "submit" %> 
+		<div class="spacer"></div> 
+      <% end %>
+	</div>
+	
+  </div>
+</div>

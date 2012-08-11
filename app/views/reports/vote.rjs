@@ -1,0 +1,5 @@
+page.replace_html "vote_#{@report.id}", :partial => "reports/vote_off", :locals => { :report => @report }
+page.replace_html "voted_#{@report.id}", :partial => "reports/voted"
+if @report.is_poor?
+  page.visual_effect :opacity, "report_#{@report.id}", :from => 1.0, :to => 0.3
+end

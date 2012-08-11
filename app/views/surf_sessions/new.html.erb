@@ -1,0 +1,130 @@
+<%= content_for(:head) do %>
+  <%= calendar_date_select_includes "silver" %>
+<% end %>
+
+<div class="layout1">
+  <div class="main_container">
+
+    <%= render "shared/error_messages", :target => @surf_session %>
+
+    <div class="myform">
+      <%= form_for @surf_session, :url => surf_sessions_path, :html => { :multipart => true } do |surf_session_form| %> 
+		
+		<h1>Post a surf session</h1>
+		<p class="description">Use this form to post a surf session</p>
+
+		<div class="legend">
+		  <span id="meaning">required field</span><span id="symbol">*</span>
+		  <div class="spacer"></div>
+		</div>
+
+		<div class="row">
+          <label>
+		    Date
+			<span class="description">Defaults to today</span>
+		  </label>
+		  <div class="date_select">
+		    <%= calendar_date_select :surf_session, :actual_date, :time => true %>
+		  </div>
+		  <div class="spacer"></div>
+		</div>
+
+        <div class="row">
+          <label>
+		    Location
+			<span class="required_field">*</span>
+			<span class="description">Where?</span>
+		  </label>
+		  <%= surf_session_form.select :surfspot_id, @surfspots.collect {|s| [ s.full_name, s.id ] } %>
+	      <div class="spacer"></div>
+		</div>
+		
+		<div class="row">
+		  <label>
+		    Rating
+			<span class="required_field">*</span>
+			<span class="description">(0=sucked, 5=stoked)</span>
+		  </label>
+	      <%= surf_session_form.select :rating, SurfSession::VALID_RATING %>
+		  <div class="spacer"></div>
+		</div> 
+		
+		<div class="row">
+		  <label>
+		    Description
+			<span class="required_field">*</span>
+		    <span class="description">Anything you want to log about this session</span>
+		  </label>
+	      <%= surf_session_form.text_area :text, :rows => 10, :cols => 20 %>
+		  <div class="spacer"></div>
+		</div>
+		
+		<div class="row">
+		  <label>
+		    Surf board
+		    <span class="description">Your weapon of choice...</span>
+		  </label>
+		  <% if @surfboards.empty? %>
+		    <span class="text">
+		      None - <%= link_to "add a new surfboard", new_surfboard_path %>
+			</span>
+		  <% else %>
+	        <%= surf_session_form.select :surfboard_id, @surfboards.collect { |s| [s.name, s.id] }, options = {:prompt => ""} %>
+		  <% end %>
+		  <div class="spacer"></div>
+		</div>
+		
+        <div class="row">
+          <label>
+		    Surf conditions
+			<span class="description">How was the surf?</span>
+		  </label>
+		  <%= surf_session_form.select :surf_conditions, SurfSession::VALID_SURF_CONDITIONS, options = {:selected => ""} %>
+	      <div class="spacer"></div>
+		</div>
+		  
+		<div class="row">
+		  <label>
+		    Wave height
+			<span class="description">How big?</span>
+		  </label>
+	      <%= surf_session_form.select :wave_height, SurfSession::VALID_WAVE_HEIGHT, options = {:selected => ""} %>
+		  <div class="spacer"></div>
+		</div> 
+		
+		<div class="row">
+		  <label>
+		    Crowd factor
+			<span class="description">Was it crowded?</span>
+		  </label>
+	      <%= surf_session_form.select :crowd_factor, SurfSession::VALID_CROWD_FACTOR, options = {:selected => ""} %>
+          <div class="spacer"></div>
+		</div>
+		
+		<div class="row">
+		  <label>
+		    Embed link
+			<span class="description">Youtube, Qik, ... video</span>
+		  </label>
+		  <%= surf_session_form.text_area :embed_link, :rows => 1, :cols => 20 %>
+		  <div class="spacer"></div>
+		</div>
+		
+		<div id="photos">
+		  <%= surf_session_form.fields_for :photos do |photo_form| %>
+              <div class="row">
+                  <%= render :partial => "photos/new",
+				             :locals => { :form => photo_form } %>
+		          <div class="spacer"></div>
+		      </div>
+		  <% end %>
+		</div>
+	
+	    <%= submit_tag "Add", :class => "submit" %>
+	    <div class="spacer"></div>
+
+    <% end %>
+	</div>
+
+  </div>
+</div>

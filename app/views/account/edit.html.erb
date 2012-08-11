@@ -1,0 +1,58 @@
+<div class="layout1">
+  <div class="main_container">
+    <%= render "shared/error_messages", :target => @user %>
+
+    <div class="myform">
+      <%= form_for :user do |form| %> 
+        <h1>Update your email</h1>
+        <p class="description">Use this form to update your email address where we can reach you</p>
+
+		<div class="legend">
+		  <span id="meaning">required field</span><span id="symbol">*</span>
+		  <div class="spacer"></div>
+		</div>
+		
+        <%= hidden_field_tag "attribute", "email", :id => nil %>
+
+		<div class="row">
+          <%= render "email_field_row", :form => form %>
+		  <div class="spacer"></div>
+		</div>
+		  
+		<%= submit_tag "Update", :class => "submit" %> 
+		<div class="spacer"></div> 
+      <% end %>
+	</div>
+	
+	<div class="myform">
+      <%= form_for :user do |form| %> 
+		<h1>Update your password</h1>
+		<p class="description">Use this form to update your login password</p>
+
+		<div class="legend">
+		  <span id="meaning">required field</span><span id="symbol">*</span>
+		  <div class="spacer"></div>
+		</div>
+		
+        <%= hidden_field_tag "attribute", "password", :id => nil %> 
+		
+		<div class="row">
+          <%= render :partial => "password_field_row", :locals => {:form => form, :field => "current_password", :description => nil} %>
+          <div class="spacer"></div>
+		</div>
+		<div class="row">
+		  <%= render :partial => "password_field_row", :locals => {:form => form, :field => "password", :field_title => "New password", :description => nil} %>
+          <div class="spacer"></div>
+		</div>
+    <div class="row">
+    <%= render "password_field_row", :form => form, :field => "password_confirmation", :field_title => "Confirm", :description => nil %>
+		  <div class="spacer"></div>
+		</div>
+		  
+		<%= submit_tag "Update", :class => "submit" %> 
+		<div class="spacer"></div> 
+      <% end %>
+    </div>
+
+  </div>
+</div>

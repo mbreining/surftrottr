@@ -1,0 +1,48 @@
+<div class="layout2">
+
+  <div class="side_container">
+    <%= render :partial => "comments/sidebar_box" %>
+    <%= render :partial => "top_report_contributors" %>
+    <%= render :partial => "top_bulletin_contributors" %>
+    <%= render :partial => "top_session_contributors" %>
+    <%= render :partial => "new_members" %>
+    <%= render :partial => "active_members" %>
+  </div>
+
+  <div class="main_container" id="xsnazzy">
+
+    <%= render "layouts/xsnazzy_box_top", :colors => "white_grey" %>
+
+      <ul id="menu">
+        <li>
+          <%= link_to "Recent bulletins", { :controller => 'home', :action => 'index' }, :class => 'active' %>
+        </li>
+        <li>
+          <%= link_to "Recent reports", { :controller => 'home', :action => 'reports' } %>
+        </li>
+        <li>
+          <%= link_to "Recent sessions", { :controller => 'home', :action => 'sessions' } %>
+        </li>
+      </ul>
+
+      <div class="spacer"></div>
+
+      <div id="posts">
+        <% if @posts.length != 0 %>
+          <%= render :partial => "posts/post", :collection => @posts, :locals => { :layout => "w_avatar", :hide_edit_links => true, :hide_surfer => false, :hide_comments => false, :media_size => "thumb" } %>
+			<% else %>
+			    <br />
+			    <span style="font-size: 10pt; padding: 0.5em">
+			        No post created yet.
+				</span>
+			<% end %>
+	  </div>
+		
+	  <div id="pagination">
+			    <%= will_paginate @posts %>
+    </div>
+
+      <%= render "layouts/xsnazzy_box_bottom", :colors => "white_grey" %>
+
+  </div>
+</div>

@@ -1,0 +1,8 @@
+Hello <%= @owner.user_information.full_name %>,
+
+<%= @user.screen_name %> (<%= @user.user_information.full_name %>) added a new comment to your <%= @commentable_type.underscore.humanize.downcase %>.
+
+View <%= @user.screen_name %>'s comment: <%= @commentable_url %>
+
+--The Surftrottr team
+surftrottr.com

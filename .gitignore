@@ -1,0 +1,41 @@
+# OSX
+.DS_Store
+
+# Emacs
+*~
+
+# vim
+.*.swp
+
+# Bundler
+/.bundle
+
+# Subversion
+.svn
+
+# Rails
+/log/*
+/tmp/*
+/vendor/bundle
+/public/system/*
+/config/database.yml
+/config/application.rb
+/config/deploy.rb
+/config/gmaps_api_key.yml:w
+/config/initializers/recaptcha.rb
+/config/initializers/secret_token.rb
+/config/initializers/session_store.rb
+**.rails2
+
+# Misc
+/db/*.sqlite3
+/coverage/
+.rspec
+/spec/tmp/*
+*.rbc
+*.sassc
+.sass-cache
+capybara-*.html
+**.orig
+rerun.txt
+pickle-email-*.html

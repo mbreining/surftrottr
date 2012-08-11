@@ -1,0 +1,54 @@
+#browser {
+  position: relative;
+  min-height: 100px;
+}
+
+/* IE6 hack for floats in a relative container */
+/* This fix gives a layout to the relative container */
+/* Hides from IE/Mac \*/
+* html #browser {
+  height: 1%;
+}
+/* End hide from IE/Mac */
+
+#browser h2 {
+  float:left;
+  font-size: 14px;
+  font-weight:bold;
+  margin: 0 10px 10px 0;
+  padding: 5px;
+  width: 170px;
+  border-bottom:1px solid #444444;
+}
+
+#browser p {
+  margin:0;
+  padding:0;
+}
+
+#browser a, #browser a:visited  {
+  text-decoration: none;
+  color: #0066B3;
+}
+
+#states {
+  float: left;
+  margin-right: 10px;
+  padding: 5px;
+  width: 170px;
+}
+
+#cities {
+  float: left;
+  margin-right: 10px;
+  padding: 5px;
+  width: 170px;
+}
+
+#surfspots {
+  float: left;
+  margin-right: 10px;
+  padding: 5px;
+  width: 170px;
+}
+

@@ -1,0 +1,81 @@
+<div class="layout1">
+  <div class="main_container">
+
+    <%= render "shared/error_messages", :target => @surfspot %>
+
+	<div class="myform">
+	  <%= form_for @surfspot, :url => { :controller => 'suggested_surfspots', :action => 'create' } do |form| %> 
+	    <h1>Suggest a new surfspot</h1>
+	    <p class="description">
+		  Enter the information about the surfspot you want to be added to Surftrottr
+		</p>
+		
+		<div class="legend">
+		  <span id="meaning">required field</span><span id="symbol">*</span>
+		  <div class="spacer"></div>
+		</div>
+
+        <div class="row">
+		  <label>
+		    Name
+		    <span class="required_field">*</span>
+		    <span class="description">e.g. South Ocean Beach</span>
+		  </label>
+        <%= form.text_field :name,
+                    :size => Surftrottr::Application.config.html_text_field_size,
+                    :maxlength => Surftrottr::Application.config.db_string_max_length,
+                    :class => "text" %>
+		  <div class="spacer"></div>
+		</div>
+		<div class="row">
+		  <label>
+		    City
+		    <span class="required_field">*</span>
+		    <span class="description">e.g. San Francisco</span>
+		  </label>
+        <%= form.text_field :city,
+                    :size => Surftrottr::Application.config.html_text_field_size,
+                    :maxlength => Surftrottr::Application.config.db_string_max_length,
+                    :class => "text" %>
+		  <div class="spacer"></div>
+		</div>
+		<div class="row">
+		  <label>
+		    State
+		    <span class="required_field">*</span>
+		    <span class="description">e.g. CA</span>
+		  </label>
+        <%= form.text_field :state,
+                    :size => Surftrottr::Application.config.html_text_field_size,
+                    :maxlength => Surftrottr::Application.config.db_string_max_length,
+                    :class => "text" %>
+		  <div class="spacer"></div>
+		</div>
+		<div class="row">
+		  <label>
+		    Twitter tag
+		    <span class="description">e.g. sloat</span>
+		  </label>
+        <%= form.text_field :tag,
+                    :size => Surftrottr::Application.config.html_text_field_size,
+                    :maxlength => Surftrottr::Application.config.db_string_max_length,
+                    :class => "text" %>
+		  <div class="spacer"></div>
+		</div>
+		  
+		<div class="row">
+		  <label>
+		    Comments
+		    <span class="description">255 chars max</span>
+		  </label>
+	      <%= form.text_area :comments, :rows => 5, :cols => 30 %>
+		  <div class="spacer"></div>
+		</div>
+		  
+		<%= submit_tag "Submit", :class => "submit" %>
+		
+	    <% end %>
+	  </div>
+
+  </div>
+</div>

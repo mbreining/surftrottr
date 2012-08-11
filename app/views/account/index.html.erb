@@ -1,0 +1,45 @@
+<div class="layout1">
+  <div class="main_container">
+	
+	<div class="mytab">
+	
+      <ul class="tabs">
+        <li><%= link_to "Account", { :controller => 'account', :action => 'index' }, :class => 'active' %></li>
+        <li><%= link_to "Twitter", :controller => 'thirdparty_account', :action => 'index' %></li>
+      </ul>
+
+      <div class="tabs_content">
+	
+		<ul class="actions">
+	      <li class="action">
+		    <%= link_to "edit", :controller => 'account', :action => 'edit' %>
+		  </li>
+		</ul>
+
+        <div class="section">
+		  <ul>
+	        <li class="name">Username:</li>
+		    <li class="value"><%= @user.screen_name %></li>
+	        <li class="name">Email:</li>
+		    <li class="value"><%= @user.email %></li>
+		    <li class="name">Password:</li>
+		    <li class="value">********</li>
+	      </ul>
+
+		  <div class="spacer"></div>
+        </div>
+		
+		<div class="separator"></div>
+
+        <div class="section">
+          <%= link_to "deactivate account", :controller => 'account', :action => 'deactivate' %>
+        </div>
+
+	    <div class="spacer"></div>
+		
+	  </div>
+	  
+	</div>
+
+  </div>
+</div>

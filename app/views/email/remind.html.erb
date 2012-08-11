@@ -1,0 +1,21 @@
+<div class="layout1">
+  <div class="main_container">
+
+    <div class="myform">
+      <%= form_for :user do |form| %> 
+        <h1>Forgot your password?</h1>
+        <p class="description">Use this form to receive your Surftrottr login information by email</p>
+
+        <div class="row">
+          <%= render "account/email_field_row", :form => form %>
+        <div class="spacer"></div>
+    </div>
+
+        <%= submit_tag "Email me", :class => "submit" %> 
+
+      <div class="spacer"></div> 
+      <% end %>
+    </div>
+
+  </div>
+</div>

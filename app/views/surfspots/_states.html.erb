@@ -1,0 +1,10 @@
+<p>
+  <% for s in find_states %>
+    <%= link_to h(s.state),
+	                   { :url => { :controller => "surfspots",
+								   :action => "browse",
+								   :state => s.state },
+                   :method => :get, :remote => true } %>
+	<br />
+  <% end %>
+</p>

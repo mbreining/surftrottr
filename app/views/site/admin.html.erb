@@ -1,0 +1,55 @@
+<div class="layout1">
+  <div class="main_container">
+   
+    <div class="main_box">
+	<%= render :partial => "layouts/round_box_top" %>
+      <h1>Surfspots</h1>
+	  
+      <h2>Existing surfspots</h2>
+	  <p>
+        <ul>
+		  <% @surfspots.each do |spot| %>
+			<li><%= spot.full_name %> - <%= link_to "edit", edit_surfspot_path(spot) %></li>
+		  <% end %>
+	    </ul>
+	  </p>
+	  <p>
+		<%= link_to "Create a new surfspot", new_surfspot_path %>
+	  </p>
+	
+      <h2>Suggested surfspots</h2>
+	  <p>
+        <ul>
+  		  <% @suggested_surfspots.each do |spot| %>
+			  <li>
+			    <%= spot.full_name %> (tag: <%= spot.tag %>) by 
+			    <%= link_to User.find(spot.user_id).screen_name, surfer_path(User.find(spot.user_id).screen_name) %> - 
+			    <%= link_to "archive", { :controller => "suggested_surfspots", :action => "archive", :id => spot }, :method => :put %> 
+			  </li>
+		  <% end %>
+	    </ul>
+	  </p>
+	  
+	<%= render :partial => "layouts/round_box_bottom" %>
+	</div>
+	
+	<br/><br/>
+	
+    <div class="main_box">
+	<%= render :partial => "layouts/round_box_top" %>
+      <h1>Users</h1>
+	  
+      <h2>Last logins (past 5 days)</h2>
+	  <p>
+        <ul>
+		  <% @users.each do |user| %>
+			<li><%= link_to user.screen_name, surfer_path(user.screen_name) %>: <%= user.last_login %></li>
+		  <% end %>
+	    </ul>
+	  </p>
+	  
+	<%= render :partial => "layouts/round_box_bottom" %>
+	</div>
+
+  </div>
+</div>

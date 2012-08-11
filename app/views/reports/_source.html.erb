@@ -1,0 +1,22 @@
+<% if report.class.to_s == Report::STANDARD_REPORT %>
+  <span class="source">
+    via <%= link_to "surftrottr", "http://surftrottr.com" %> from
+    <%= report.source.humanize.downcase %>
+  </span>
+<% elsif report.class.to_s == Report::TWITTER_REPORT %>
+  <span class="source">
+    via <%= link_to "twitter", "http://twitter.com" %> from
+	<%= report.source.humanize.downcase %>
+  </span>
+<% end %>
+  
+<span class="icon">
+  <% if report.source == Report::WEB %>
+    <%= image_tag "icons/web.png" %>
+  <% elsif report.source == Report::MOBILE_WEB %>
+    <%= image_tag "icons/phone.png" %>
+  <% elsif report.source == Report::TEXT %>
+    <%= image_tag "icons/phone.png" %>
+  <% end %>
+</span>
+

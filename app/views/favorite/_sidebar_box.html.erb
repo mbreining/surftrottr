@@ -1,0 +1,37 @@
+<div class="side_box">
+
+  <%= render :partial => "layouts/round_box_top" %>
+
+			  <h2>
+			    <span class="header">Surfspots</span>
+				
+				<div class="actions">
+			      <% unless hide_edit_links? %>
+				    <%= link_to "edit", { :controller => "favorite", :action => "edit" } %>
+				    <!-- %= link_to image_rollover_tag("icons/edit.png", "icons/edit_on.png"), { :controller => "favorite", :action => "edit" }, { :title => "Edit", :alt => "(edit)" } % -->
+			      <% end %>
+				</div>
+				
+				<div class="spacer"></div>
+			  </h2>
+
+      <div class="contents">
+	    <ul>
+		  <% if @surfspots.length != 0 %>
+	      	<% @surfspots.each do |surfspot| %>
+	      		<li>
+		    		<%= link_to truncate(surfspot.full_name, :length => 45), 
+					            surfspot_path(surfspot), 
+								:title => surfspot.full_name %>
+		  		</li>
+	    	<% end %>
+		  <% else %>
+    		<li>None</li>
+		  <% end %>
+		  <div class="spacer"></div>
+	    </ul>
+      </div>
+  
+  <%= render :partial => "layouts/round_box_bottom" %>
+
+</div>

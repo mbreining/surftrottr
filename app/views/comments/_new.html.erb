@@ -1,0 +1,22 @@
+<br/>
+
+<% if @report %>
+  <% url = { :controller => "comments", :action => "create", :report_id => @report } %>
+<% elsif @surf_session %>
+  <% url = { :controller => "comments", :action => "create", :surf_session_id => @surf_session } %>
+<% elsif @gear %>
+  <% url = { :controller => "comments", :action => "create", :gear_id => @gear } %>
+<% elsif @surfboard %>
+  <% url = { :controller => "comments", :action => "create", :surfboard_id => @surfboard } %>
+<% elsif @post %>
+  <% url = { :controller => "comments", :action => "create", :post_id => @post } %>
+<% end %>
+
+<%= form_for(:comment, :url => url, :remote => true) do |form| %>
+
+  <fieldset> 
+	<%= form.text_area :body, :rows => 2, :cols => 60 %>
+	<%= submit_tag "Create" %>
+  </fieldset>
+
+<% end %>

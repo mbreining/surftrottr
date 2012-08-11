@@ -1,0 +1,29 @@
+<div class="side_box">
+		
+  <%= render :partial => "layouts/round_box_top" %>
+	
+				<h2>
+				  <span class="header">Active members</span>
+				  <div class="spacer"></div>
+				</h2>
+
+				<div class="contents">
+                  <div id="mosaic">
+                    <ul>
+                      <% unless @active_members.empty? %>
+                        <% @active_members.each do |user| %>
+                          <li>
+                            <span id="thumbnail">
+							  <%= link_to mini_thumbnail_tag(user), surfer_path(user.screen_name), :title => user.screen_name %>
+		                    </span>
+	                      </li>
+                        <% end %>
+                      <% end %>
+                      <div class="spacer"></div>
+					</ul>
+	              </div>
+				</div>
+				
+  <%= render :partial => "layouts/round_box_bottom" %>
+  
+</div>

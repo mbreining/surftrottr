@@ -1,0 +1,43 @@
+<div class="side_box">
+
+  <%= render :partial => "layouts/round_box_top" %>
+
+			  <h2>
+			    <span class="header">Gear</span>
+
+				<div class="actions">
+			      <% unless hide_edit_links? %>
+				    <%= link_to "edit", gears_path %>
+			      <% end %>
+				</div>
+
+				<div class="spacer"></div>
+			  </h2>
+
+  <div class="contents">
+	<ul>
+		<% unless @gears.nil? || @gears.empty? %>
+	    	<% @gears.each do |gear| %>
+	      		<li>
+		    		<%= link_to truncate(gear.category + " - " + gear.name, :length => 45), 
+					            gear_path(gear), 
+								:title => gear.name %>
+					<% unless gear.photos.nil? || gear.photos.empty? %>
+					  <% if gear.photos.length == 1 %>
+					    <%= link_to image_tag("icons/picture.png"), gear_path(gear), :title => gear.name %>
+					  <% else %>
+					    <%= link_to image_tag("icons/pictures.png"), gear_path(gear), :title => gear.name %>
+					  <% end %>
+					<% end %>
+		  		</li>
+	    	<% end %>
+		<% else %>
+    		<li>None</li>
+		<% end %>
+		<div class="spacer"></div>
+	</ul>
+  </div>
+  
+  <%= render :partial => "layouts/round_box_bottom" %>
+
+</div>

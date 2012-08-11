@@ -1,0 +1,39 @@
+<div class="layout1">
+  <div class="main_container">
+    <%= render "shared/error_messages", :target => @message %>
+
+	<div class="myform">
+      <%= form_for :message do |form| %> 
+		<h1>Email <%= @recipient.screen_name %> (<%= @recipient.user_information.full_name %>)</h1>
+		<p class="description">Use this form to send an email to <%= link_to @recipient.screen_name, surfer_path(@recipient.screen_name) %></p>
+
+		<div class="legend">
+		  <span id="meaning">required field</span><span id="symbol">*</span>
+		  <div class="spacer"></div>
+		</div>
+		
+	    <%= hidden_field_tag "id", @recipient.screen_name %>
+
+        <div class="row">
+          <%= text_field_for_form form, "subject", "Enter a subject" %>
+		  <div class="spacer"></div>
+		</div>
+		
+		<div class="row">
+		  <label>
+		    Message
+			<span class="required_field">*</span>
+		    <span class="description">1000 chars max.</span>
+		  </label>
+	      <%= form.text_area :body, :rows => 10, :cols => 20 %>
+		  <div class="spacer"></div>
+		</div>
+		
+        <%= submit_tag "Send", :class => "submit" %> 
+
+		<div class="spacer"></div> 
+      <% end %>
+	</div>
+	
+  </div>
+</div>

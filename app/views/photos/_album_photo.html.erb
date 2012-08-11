@@ -1,0 +1,11 @@
+<% if !album_photo.report_id.nil? %>
+  <%= link_to image_tag(album_photo.image.url(photo_size)), report_path(album_photo.report_id) %>
+<% elsif !album_photo.surf_session_id.nil? %>
+  <%= link_to image_tag(album_photo.image.url(photo_size)), :controller => "surf_sessions", :action => "show", :id => album_photo.surf_session_id %>
+<% elsif !album_photo.surfboard_id.nil? %>
+  <%= link_to image_tag(album_photo.image.url(photo_size)), :controller => "surfboards", :action => "show", :id => album_photo.surfboard_id %>
+<% elsif !album_photo.gear_id.nil? %>
+  <%= link_to image_tag(album_photo.image.url(photo_size)), :controller => "gears", :action => "show", :id => album_photo.gear_id %>
+<% elsif !album_photo.post_id.nil? %>
+  <%= link_to image_tag(album_photo.image.url(photo_size)), :controller => "posts", :action => "show", :id => album_photo.post_id %>
+<% end %>

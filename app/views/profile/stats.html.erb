@@ -1,0 +1,144 @@
+<div class="layout2">
+
+  <div class="side_container">
+	
+	<div class="side_boxes">
+      <div class="side_box">
+
+        <%= render :partial => "layouts/round_box_top" %>
+	
+        <h2>
+		  <span class="header">Your surf buddies stats</span>
+		  <div class="spacer"></div>
+		</h2>
+    
+	    <div class="contents">
+          <div id="mosaic">
+	        <% unless current_user.friends.empty? %>
+              <%= render :partial => "friendship/friends_stats", :locals => { :user => current_user } %>
+	        <% else %>
+	          <ul>
+		        <li>None</li>
+		        <div class="spacer"></div>
+		      </ul>
+	        <% end %>
+	      </div>
+		</div>
+		
+        <%= render :partial => "layouts/round_box_bottom" %>
+  
+      </div>
+	
+	  <% unless current_user == @user %>
+        <div class="side_box">
+
+          <%= render :partial => "layouts/round_box_top" %>
+	
+          <h2>
+		    <span class="header"><%= @user.screen_name %>'s surf buddies stats</span>
+		    <div class="spacer"></div>
+		  </h2>
+    
+	      <div class="contents">
+            <div id="mosaic">
+	          <% unless @user.friends.empty? %>
+                <%= render :partial => "friendship/friends_stats", :locals => { :user => @user } %>
+	          <% else %>
+	            <ul>
+		          <li>None</li>
+		          <div class="spacer"></div>
+		        </ul>
+	          <% end %>
+	        </div>
+		  </div>
+
+          <%= render :partial => "layouts/round_box_bottom" %>
+		    
+        </div>
+	  <% end %>
+    </div>
+	
+  </div>
+
+  <div class="main_container">
+  
+      <%= render :partial => "layouts/rnd_box_top", :locals => { :name => "white_on_sky" } %>
+	
+	    <div class="stats">
+		
+		  <h1><%= @user.screen_name %>'s stats</h1>
+				
+	    <div class="summary">
+	<ul>
+	  <li>
+	    <span class="name">Last post:</span>
+		<span class="value">
+		  <% if @user.posts.count == 0 %>
+		    None added yet
+		  <% else %>
+	        <%= @user.posts.first.created_at.to_datetime.strftime "%a, %d %b %Y" %>
+		  <% end %>
+		</span>
+	  </li>
+	  <li>
+	    <span class="name">Last surf session:</span>
+	    <span class="value">
+		  <% if @user.surf_sessions.count == 0 %>
+		    None added yet
+		  <% else %>
+	        <%= @user.surf_sessions.first.created_at.to_datetime.strftime "%a, %d %b %Y" %>
+		  <% end %>
+        </span>
+	  </li>
+	  <li>
+	    <span class="name">Last report:</span>
+	    <span class="value">
+		  <% if @user.reports.count == 0 %>
+		    None posted yet
+		  <% else %>
+		    <%= @user.reports.first.actual_created_at.to_datetime.strftime "%a, %d %b %Y" %>
+		  <% end %>
+		</span>
+	  </li>
+	</ul>
+
+		  <div class="spacer"></div>
+		</div>
+		
+	    <div class="graph">
+		  <h2>Total number of entries created</h2>
+		  <%= bar_graph  [[ 'posts', @user.posts.empty? ? 0 : @user.posts.length ],
+		           [ 'sessions', @user.surf_sessions.empty? ? 0 : @user.surf_sessions.length ],
+		           [ 'reports', @user.reports.empty? ? 0 : @user.reports.length ],
+			  	   [ 'photos', @user.photos.empty? ? 0 : @user.photos.length ],
+			  	   [ 'comments', @user.comments.empty? ? 0 : @user.comments.length ]] %>
+		  <div class="spacer"></div>
+	    </div>
+
+		<div class="graph">
+		  <h2>Number of entries created in the past three months</h2>
+          <%= multi_bar_graph(@multi_bar_data) %>
+		  Tip #1: Blue = Posts, Green = Sessions, etc (same color pattern as previous diagram)
+		  <br/>
+		  Tip #2: Hover onto the bars to see the actual number of entries!
+		  <div class="spacer"></div>
+	    </div>
+		
+		<div class="graph">
+		  <h2>Average number of entries created per month</h2>
+		  <%= bar_graph  [[ 'posts', monthly_average(@user, @user.posts) ],
+		           [ 'sessions', monthly_average(@user, @user.surf_sessions) ],
+		           [ 'reports', monthly_average(@user, @user.reports) ],
+			  	   [ 'photos', monthly_average(@user, @user.photos) ],
+			  	   [ 'comments', monthly_average(@user, @user.comments) ]] %>
+		  <div class="spacer"></div>
+	    </div>
+	  
+	    <div class="spacer"></div>
+	
+	    </div>
+		  
+	  <%= render :partial => "layouts/rnd_box_bottom", :locals => { :name => "white_on_sky" } %>
+	
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<div id="surfspot">
+
+    <h2>
+	  <%= @surfspot.full_name %>
+	</h2>
+		
+	<ul>
+	  <li>
+		<b>#<%= @surfspot.tag %></b> on Twitter
+	  </li>
+	  <div class="spacer"></div>
+	</ul>
+
+</div>
+
+<div id="actions">
+  <ul id="xsnazzy">
+    <%= render :partial => "layouts/xsnazzy_box_top", :locals => { :colors => "grey_grey" } %>
+
+	<% if logged_in? and !is_surfspot_favorite?(@surfspot.id) -%>
+	  <li id="favorite">
+		<%= link_to "<span class='star'>add to profile</span>", 
+							:url => { :controller => "favorite",
+									:action => "add",
+                  :id => @surfspot.id },
+                  :remote => true,
+							:html => { :title => "Add this surfspot to your profile",
+										:class => "button" } %>
+		<div class="spacer"></div>
+	  </li>
+	<% end -%>
+	<li>
+  <% reports_new_path = { :controller => "reports", :action => "new", :surfspot_id => @surfspot.id } %>
+	  <% link_to reports_new_path, :title => "Post a report for this surfspot", :class => "button" do %>
+	    <span class='post'>post report</span>
+	  <% end %>
+	  <div class="spacer"></div>
+	</li>
+	<div class="spacer"></div>
+	<%= render :partial => "layouts/xsnazzy_box_bottom", :locals => { :colors => "grey_grey" } %>
+  </ul>
+</div>

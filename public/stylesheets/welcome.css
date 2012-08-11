@@ -1,0 +1,231 @@
+body {
+  font-family: Helvetica;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;	
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Needed for IE and Firefox */
+img {
+  border: 0;
+}
+
+/* IE clear/height bug */
+/* http://stackoverflow.com/questions/473143/extra-vertical-space-in-ie-after-div-clear */
+.spacer {
+  clear: both;
+  height: 0px;
+  overflow: hidden;
+}
+
+/* Wrapper */
+#wrapper {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+/* Header */
+#welcome_header {
+  font-size: 13px;
+  padding: 10px 60px 5px 60px;
+}
+
+#welcome_header #branding {
+  float: left;
+}
+
+#welcome_header #login {
+  position: relative;
+  float: right;
+  width: 450px;
+}
+
+#login #input {
+  float: left;
+  width: 380px;
+}
+
+#login #submit {
+  float: left;
+}
+
+#input .row {
+  width: 380px;
+}
+
+#input label { 
+  display: block;
+  float: left;
+  width: 150px;
+  margin: 1px 10px;
+  text-align: right; 
+  color: #444444;
+}
+
+#input input[type="text"], #input input[type="password"] {
+  float: left;
+  width: 190px;
+  font-size: 12px;
+  border: solid 1px #aacfe4;
+  margin: 1px 0;
+}
+
+/* IE6 hack: attribute selectors not supported */
+#input input.text, #input input.password {
+  float: left;
+  width: 190px;
+  font-size: 12px;
+  border: solid 1px #aacfe4;
+  margin: 1px 0;
+}
+
+#input input[type="checkbox"] {
+  float: left;
+  margin: 1px 0;
+}
+
+/* IE6 hack: attribute selectors not supported */
+#input input.checkbox {
+  float: left;
+  margin: 1px 0;
+}
+
+#submit button, #submit .submit {
+  width: 50px;
+  background: #666666;
+  text-align: center;
+  color: #FFFFFF;
+  font-size: 11px;
+}
+
+/* Main content */
+#welcome_content {
+  position: relative;
+  height: 500px;
+  max-width: 1000px;
+  background: #F0F0F0 url(../images/welcome/welcome.jpg) no-repeat;
+  text-align: center;
+}
+
+#welcome_content a {
+  color: #0066B3;
+  font-weight: bold;
+}
+
+#welcome_content #banner {
+  height: 1em;
+  background: #E6F4FF;
+  opacity: 0.5;
+  padding: 0.25em;
+}
+
+#welcome_content #register {
+  float: right;
+  width: 700px;
+  text-align: center;
+}
+
+#welcome_content #reminder {
+  float: right;
+  font-size: 10pt;
+}
+
+#welcome_content #reminder a {
+  font-weight: normal;
+}
+
+#welcome_content #photo_link {
+  position: absolute;
+  left: 5px;
+  bottom: 0;
+  height: 20px;
+  font-size: 8pt;
+}
+
+#welcome_content #abstract {
+  position: absolute;
+  width: 500px;
+  height: 125px;
+  left: 25%;
+  right: 25%;
+  bottom: 0px;
+  background: #E6F4FF;
+  opacity: 0.5; 
+  padding: 5px;
+  font-size: 10pt;
+  text-align: left;
+}
+
+/* Flashes */
+.flash {
+  height: 1em;
+  max-width: 1000px; 
+  padding: 0.25em;
+  font-weight: bold; 
+}
+
+#error { 
+  background-color: #FFFFBD;
+  color: #FF8800;
+}
+
+#notice {
+  background-color: #DDEEC2;
+  color: #3B5D14;
+}
+
+/* Footer */
+#footer {
+  position: relative;
+  max-width: 1000px;
+  color: #444444;
+}
+
+#footer .text {
+  position: absolute;
+  width: 500px;
+  left: 25%;
+  right: 25%;
+  background: #E6F4FF;
+  font-size: 10pt;
+  text-align: right;
+  padding: 5px;	
+}
+
+#footer .text #copyright {
+  float: left;
+}
+
+#footer .text #links {
+  float: right;
+}
+
+#footer a {
+  color: #444444;
+}
+
+/* Debug */
+#debug {
+  margin-top: 4em;
+  margin-left: auto;
+  text-align: center;
+}
+#debug a, #debug a.visited {
+  text-decoration: none;
+  color: #002350;
+}
+fieldset.debug_info {
+  text-align: left; 
+  margin: 1em; 
+  background: #eee;
+}

@@ -1,0 +1,31 @@
+<div class="side_box">
+
+  <%= render :partial => "layouts/round_box_top" %>
+	
+				<h2>
+				  <span class="header">Nearby spots <span style="font-size: 13px">(20 miles)</span></span>
+				  <div class="spacer"></div>
+				</h2>
+  
+				<div class="contents">
+					<ul>
+						<% if @nearby_spots.length != 0 %>
+                            <% @nearby_spots.each do |spot| %>
+                                <li>
+								    <%= link_to truncate(spot.full_name, :length => 45), 
+											    surfspot_path(spot),
+												:title => spot.full_name %>
+								</li>
+                            <% end %>
+						<% else %>
+    		                <li>None</li>
+		                <% end %>
+						<div class="spacer"></div>
+					</ul>
+					<div class="spacer"></div>
+				</div>
+		  	<div class="spacer"></div>
+			
+  <%= render :partial => "layouts/round_box_bottom" %>
+  
+</div>

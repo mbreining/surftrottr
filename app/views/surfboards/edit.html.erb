@@ -1,0 +1,78 @@
+<div class="layout1">
+  <div class="main_container">
+
+    <%= render "shared/error_messages", :target => @surfboard %>
+
+    <div class="myform">
+      <%= form_for @surfboard, :url => surfboard_path, :method => 'put', :html => { :multipart => true } do |surfboard_form| %> 
+        <h1>Edit a surfboard</h1>
+		<p class="description">Use this form to edit a surfboard</p>
+
+		<div class="row">
+          <label>
+		    Type
+			<span class="required_field">*</span>
+			<span class="description">What type of surfboard?</span>
+		  </label>
+		  <%= surfboard_form.select :category, Surfboard::VALID_SURFBOARD_TYPES.collect { |type| type.underscore.humanize } %>
+		  <div class="spacer"></div>
+		</div>
+
+		<div class="row">
+		  <label>
+		    Length
+			<span class="required_field">*</span>
+		    <span class="description">e.g. 6'3"</span>
+		  </label>
+	      <%= surfboard_form.select :length, Surfboard::VALID_LENGTHS %>
+		  <div class="spacer"></div>
+		</div>
+
+		<div class="row">
+		  <label>
+		    Brand
+			<span class="required_field">*</span>
+		    <span class="description">e.g. Neptune Surfboards</span>
+		  </label>
+	      <%= surfboard_form.text_area :brand, :rows => 1, :cols => 20 %>
+		  <div class="spacer"></div>
+		</div>
+
+		<div class="row">
+		  <label>
+		    Description
+		    <span class="description">A description of the surfboard (1000 chars max)</span>
+		  </label>
+	      <%= surfboard_form.text_area :description, :rows => 3, :cols => 20 %>
+		  <div class="spacer"></div>
+		</div>
+		
+		<div class="row">
+		  <label>
+		    Link
+		    <span class="description">e.g. manufacturer's page</span>
+		  </label>
+	      <%= surfboard_form.text_area :link, :rows => 1, :cols => 20 %>
+		  <div class="spacer"></div>
+		</div>
+				
+		<div id="photos">
+		  <%= surfboard_form.fields_for :photos do |photo_form| %>
+              <div class="row">
+                  <%= render :partial => "photos/new",
+				             :locals => { :form => photo_form } %>
+				<div class="spacer"></div>
+		      </div>
+		  <% end %>
+		</div>
+	
+	    <%= submit_tag "Edit", :class => "submit" %>
+	    <div class="spacer"></div>
+
+    <% end %>
+	</div>
+
+    <!-- %= link_to 'Back', { :controller => "surfer", :action => @user.screen_name, :id => "surfboard" } % -->
+
+  </div>
+</div>

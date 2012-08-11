@@ -1,0 +1,74 @@
+<div class="layout2">
+
+  <div class="side_container">
+      <%= render :partial => "favorite/sidebar_box" %>
+	  <%= render :partial => "friendship/sidebar_box" %>
+	  <%= render :partial => "surfboards/sidebar_box" %>
+	  <%= render :partial => "gears/sidebar_box" %>
+  </div>
+
+  <div class="main_container" id="xsnazzy">
+
+	<%= render :partial => "layouts/xsnazzy_box_top", :locals => { :colors => "white_grey" } %>
+	
+    <div class="header">
+      <%= render :partial => "surfer/user_header" %>
+    </div>
+	
+	<div class="body">
+	
+	  <div id="post">
+		<div id="triangle"></div>
+		<div id="body">
+		  <% unless @post.nil? %>
+	        <%= render :partial => "posts/post", :collection => [ @post ], :locals => { :layout => "default", :hide_edit_links => true, :hide_surfer => true, :hide_comments => true, :media_size => "mini" } %>
+	      <% else %>
+		    <div class="empty_entry">
+		      No bulletin posted yet.
+			  <div class="getting_started">
+			    <% if logged_in? && @user == current_user %>
+			      Get started now by <%= link_to "creating a bulletin", :controller => "posts", :action => "new" %>
+				  to share a surf experience, a photo, a reading, your next planned surf session and more with your surfing community.
+				  Your latest bulletin will always show up here.
+			    <% end %>
+			  </div>
+			</div>
+		  <% end %>
+		</div>
+		<div class="spacer"></div>
+	  </div>
+  
+      <div class="spacer"></div>
+
+      <ul id="menu">
+        <li><%= link_to "Activity", surfer_path %></li>
+        <li><%= link_to "Bulletins (#{@user.posts.count})", surfer_bulletins_path, :class => 'active' %></li>
+        <li><%= link_to "Reports (#{@user.reports.count})", surfer_reports_path %></li>
+        <li><%= link_to "Sessions (#{@user.surf_sessions.count})", surfer_sessions_path %></li>
+        <li><%= link_to "Photos (#{@user.photos.length})", surfer_photos_path %></li>
+      </ul>
+
+      <div class="spacer"></div>
+
+      <div id="blog">
+        <div id="posts">
+		    <% if @posts.length != 0 %>
+		        <%= render :partial => "posts/post", :collection => @posts, :locals => { :layout => "default", :hide_edit_links => true, :hide_surfer => true, :hide_comments => false, :media_size => "thumb" } %>
+			<% else %>
+			    <br />
+			    <span style="font-size: 10pt; padding: 0.5em">
+			        No bulletin posted yet.
+				</span>
+			<% end %>
+		</div>
+			  
+		<div id="pagination">
+		    <%= will_paginate @posts %>
+		</div>
+	  </div>
+	  
+    </div>
+	
+    <%= render :partial => "layouts/xsnazzy_box_bottom", :locals => { :colors => "white_grey" } %>
+  </div>
+</div>

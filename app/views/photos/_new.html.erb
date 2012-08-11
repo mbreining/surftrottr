@@ -1,0 +1,18 @@
+<div class="photo">
+  <label for="photo_image">
+    Photo
+    <span class="description">1MB max.</span>
+  </label>
+  <div class="actions">
+  <% unless form.object.new_record? %>
+    <%= image_tag(form.object.image.url("thumb")) %>
+	<span class="delete">
+	  <%= form.label '_delete', 'Remove' %>
+      <%= form.check_box '_delete' %>
+	</span>
+  <% end %>
+  <span class="new">
+    <%= form.file_field :image, :size => 10, :class => "file" %>
+  </span>
+  </div>
+</div>

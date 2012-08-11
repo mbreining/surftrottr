@@ -1,0 +1,63 @@
+<div id="layout1">
+  <div id="main_container">
+
+    <%= render "shared/error_messages", :target => @post %>
+
+    <div class="myform">
+      <%= form_for @post, :url => posts_path, :html => { :multipart => true } do |post_form| %> 
+
+        <h1>Post a bulletin</h1>
+		<p class="description">Use this form to post a bulletin</p>
+
+		<div class="legend">
+		  <span id="meaning">required field</span><span id="symbol">*</span>
+		  <div class="spacer"></div>
+		</div>
+		
+		<div class="row">
+		  <label>
+		    Title
+			<span class="required_field">*</span>
+		    <span class="description">255 chars. max.</span>
+		  </label>
+	      <%= post_form.text_area :title, :rows => 1, :cols => 20 %>
+		  <div class="spacer"></div>
+		</div>
+		
+		<div class="row">
+		  <label>
+		    Bulletin
+			<span class="required_field">*</span>
+		    <span class="description">1000 chars. max.</span>
+		  </label>
+	      <%= post_form.text_area :text, :rows => 10, :cols => 20 %>
+		  <div class="spacer"></div>
+		</div>
+		
+		<div class="row">
+		  <label>
+		    Embed link
+			<span class="description">Youtube, Qik, ... video</span>
+		  </label>
+		  <%= post_form.text_area :embed_link, :rows => 1, :cols => 20 %>
+		  <div class="spacer"></div>
+		</div>
+		
+		<div id="photos">
+		  <%= post_form.fields_for :photos do |photo_form| %>
+              <div class="row">
+                  <%= render :partial => "photos/new",
+				             :locals => { :form => photo_form } %>
+		          <div class="spacer"></div>
+		      </div>
+		  <% end %>
+		</div>
+	
+	    <%= submit_tag "Create", :class => "submit" %>
+	    <div class="spacer"></div>
+
+    <% end %>
+	</div>
+
+  </div>
+</div>

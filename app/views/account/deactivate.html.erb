@@ -1,0 +1,46 @@
+<div class="layout1">
+  <div class="main_container">
+    <%= render "shared/error_messages", :target => @user %>
+
+    <div class="myform">
+      <%= form_for :user do |form| %> 
+        <h1>Deactivate your account</h1>
+		<p class="description">
+		  We're always looking to improve our service
+		  <br/>
+		  Please take a moment to let us know why you are deactivating your account
+		</p>
+
+		<div class="row"> 
+		  <%= form.radio_button :reason_for_deactivation, User::SVC_NOT_USEFUL, :class => "radio" %><span><%= User::SVC_NOT_USEFUL %></span>
+		  <div class="spacer"></div>
+		</div>
+		
+		<div class="row">
+		  <%= form.radio_button :reason_for_deactivation, User::NOT_ENOUGHT_REPORTS, :class => "radio" %><span><%= User::NOT_ENOUGHT_REPORTS %></span>
+		  <div class="spacer"></div>
+		</div>
+		
+		<div class="row">
+		  <%= form.radio_button :reason_for_deactivation, User::SURFSPOTS_NOT_COVERED, :class => "radio" %><span><%= User::SURFSPOTS_NOT_COVERED %></span>
+		  <div class="spacer"></div>
+		</div>
+		
+		<div class="row">
+		  <%= form.radio_button :reason_for_deactivation, User::BAD_PERFORMANCE, :class => "radio" %><span><%= User::BAD_PERFORMANCE %></span>
+		  <div class="spacer"></div>
+		</div>
+		
+		<div class="row">
+		  <%= form.radio_button :reason_for_deactivation, User::OTHER, :class => "radio" %><span><%= User::OTHER %></span>
+		  <!-- %= form.text_area :reason_for_deactivation, :rows => 1, :cols => 30 % -->
+		  <div class="spacer"></div>
+		</div>
+		
+		<%= submit_tag "Deactivate", :class => "submit", :confirm => "Are your sure you want to deactivate your account?" %> 
+      <div class="spacer"></div>
+      <% end %>
+    </div>
+
+  </div>
+</div>

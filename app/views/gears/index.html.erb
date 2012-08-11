@@ -1,0 +1,31 @@
+<div id="layout1">
+  <div id="main_container">
+	
+  	<div class="myform">
+	  <h1>Your current surfing gear</h1>
+	  <p class="description">Use this form to add/remove/edit gear</p>
+
+      <% unless @gears.nil? || @gears.empty? %>
+        <ul>
+	      <% @gears.each do |gear| %>
+	        <li class="row">
+			  <%= gear.category %> - 
+			  <%= gear.name %>
+			  <%= link_to "show", gear_path(gear), :title => "Show" %>
+			  <%= link_to "edit", edit_gear_path(gear), :title => "Edit" %>
+			  <%= link_to "remove", gear_path(gear), :method => "delete", :confirm => 'Are you sure you want to remove this gear?', :title => "Remove" %>
+			</li>
+	      <% end %>
+	    </ul>
+	  <% else %>
+	    None
+	  <% end %>   
+		
+      <div class="spacer"></div>
+	  
+	  <br/>
+	  <%= link_to 'add a new gear', new_gear_path %>
+	</div>
+
+  </div>
+</div>

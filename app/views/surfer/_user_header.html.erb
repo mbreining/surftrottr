@@ -1,0 +1,33 @@
+      <div id="avatar">
+        <%= render "avatar/avatar" %>
+	  </div>
+	  
+	  <div id="surfer">
+	    <%= render "user_information/user_information" %>
+	  </div>
+	  
+	    <div id="actions">
+	      <ul id="xsnazzy">
+		    <%= render "layouts/xsnazzy_box_top", :colors => "grey_grey" %>
+	        <% if (not logged_in?) || (logged_in? && @user != current_user) -%>
+	        <li>
+          <% email_correspond_path = { :controller => "email", :action => "correspond", :id => @user.screen_name } %>
+		        <% link_to email_correspond_path, :class => "button" do %>
+				    <span class='contact'>send message</span>
+				<% end %>
+			</li>
+			<% unless logged_in? && Friendship.exists?(current_user, @user) -%>
+        <li>
+        <% friendship_create_path = { :controller => "friendship", :action => "create", :id => @user.screen_name } %>
+		        <% link_to friendship_create_path, :confirm => "Send a surf buddy request to #{@user.screen_name}?", :class => "button" do %>
+				    <span class='add'>add as buddy</span>
+				<% end %>
+			</li>
+			<% end -%>
+	        <% end -%>
+			<div class="spacer"></div>
+			<%= render :partial => "layouts/xsnazzy_box_bottom", :locals => { :colors => "grey_grey" } %>
+	      </ul>
+	    </div>
+	  
+	  <div class="spacer"></div>

@@ -1,0 +1,12 @@
+<% if @user.user_information.first_name.length != 0 -%>
+Hello <%= @user.user_information.first_name %>,
+<% else -%>
+Hello <%= @user.screen_name %>,
+<% end -%>
+
+Thanks for signing up!
+
+We hope that using Surtrottr improves the quality of your surf sessions by giving you access to the latest surf reports in your area and helping you stay connected with the rest of the surfing community. Now shut down this computer and go shred some waves.
+
+--The Surftrottr team
+surftrottr.com

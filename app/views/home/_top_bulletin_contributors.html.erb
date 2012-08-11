@@ -1,0 +1,29 @@
+<div class="side_box">
+
+  <%= render :partial => "layouts/round_box_top" %> 
+	
+				<h2>
+				  <span class="header">Top bulletin contributors</span>
+				  <div class="spacer"></div>
+				</h2>
+
+				<div class="contents">
+                  <div id="mosaic">
+                    <ul>
+                      <% unless @top_bloggers.empty? %>
+                        <% @top_bloggers.first(7).each do |blogger| %>
+                          <li>
+                            <span id="thumbnail">
+							  <%= link_to mini_thumbnail_tag(blogger), surfer_path(blogger.screen_name), :title => "#{blogger.screen_name} (#{blogger.posts.length})" %>
+		                    </span>
+	                      </li>
+                        <% end %>
+                      <% end %>
+                      <div class="spacer"></div>
+					</ul>
+	              </div>
+				</div>
+				
+  <%= render :partial => "layouts/round_box_bottom" %>
+  
+</div>

@@ -1,0 +1,54 @@
+		  <div id="nav">
+			  <% if logged_in? -%>
+			    <ul>
+				  <li>
+				    <%= nav_link "Home", "home", "index" %>
+				  </li>
+				  <li>
+			        <%= nav_link "Profile", "surfer", current_user.screen_name %>
+				  </li>
+				  <li>
+				    <span class="drop_down">Post<span class="arrow_down"></span></span>
+				    <ul>
+					  <li>
+	                    <%= nav_link "Report", "reports", "new" %>
+					  </li>
+					  <li>
+					    <%= nav_link "Bulletin", "posts", "new" %>
+					  </li>
+					  <li>
+					    <%= nav_link "Session", "surf_sessions", "new" %>
+					  </li>
+					</ul>
+				  </li>
+				  <li>
+				    <span class="drop_down">Find<span class="arrow_down"></span></span>
+				    <ul>
+					  <li>
+	                    <%= nav_link "Surfspot", "surfspots", "index" %>
+					  </li>
+					  <li>
+					    <%= nav_link "Surfer", "surfers", "search" %>
+					  </li>
+					</ul>
+				  </li>
+				</ul>
+			  <% else -%>
+			    <ul>
+				  <li>
+				    <%= nav_link "Home", "home", "index" %>
+				  </li>
+				  <li>
+				    <span class="drop_down">Find<span class="arrow_down"></span></span>
+				    <ul>
+					  <li>
+	                    <%= nav_link "Surfspot", "surfspots", "index" %>
+					  </li>
+					  <li>
+					    <%= nav_link "Surfer", "surfers", "search" %>
+					  </li>
+					</ul>
+				  </li>
+				</ul>
+			  <% end -%>
+		  </div>

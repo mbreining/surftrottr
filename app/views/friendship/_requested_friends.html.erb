@@ -1,0 +1,22 @@
+<ul>
+  <% @user.requested_friends.each do |requester| %>
+    <li class="friend">
+	  <span id="thumbnail">
+        <%= link_to thumbnail_tag(requester), surfer_path(requester.screen_name) %>
+	  </span>
+	  <span id="surfer">
+        <%= link_to requester.screen_name, surfer_path(requester.screen_name) %>
+	    (<%= requester.user_information.full_name %>) -
+	  </span>
+	  <span id="actions">
+        <%= link_to "accept", 
+                    :controller => "friendship", :action => "accept", 
+                    :id => requester.screen_name %> / 
+        <%= link_to "decline", 
+                    { :controller => "friendship", :action => "decline", 
+                      :id => requester.screen_name }, 
+                    :confirm => "Really decline friendship with #{requester.user_information.full_name}?" %>
+	  </span>
+	</li>
+  <% end %>
+</ul>

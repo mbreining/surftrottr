@@ -1,0 +1,31 @@
+<div class="layout1">
+  <div class="main_container">
+	
+  	<div class="myform">
+	  <h1>Your current surfboards</h1>
+	  <p class="description">Use this form to add/remove/edit surfboards</p>
+
+      <% unless @surfboards.nil? || @surfboards.empty? %>
+        <ul>
+	      <% @surfboards.each do |surfboard| %>
+	        <li class="row">
+			  <%= surfboard.category %> - 
+			  <%= surfboard.length + " " + surfboard.brand %> 
+			  <%= link_to "show", surfboard_path(surfboard), :title => "Show" %>
+			  <%= link_to "edit", edit_surfboard_path(surfboard), :title => "Edit" %>
+			  <%= link_to "remove", surfboard_path(surfboard), :method => "delete", :confirm => 'Are you sure you want to remove this surfboard?', :title => "Remove" %>
+			</li>
+	      <% end %>
+	    </ul>
+	  <% else %>
+	    None
+	  <% end %>   
+		
+      <div class="spacer"></div>
+	  
+	  <br/>
+	  <%= link_to 'add a new surfboard', new_surfboard_path %>
+	</div>
+
+  </div>
+</div>

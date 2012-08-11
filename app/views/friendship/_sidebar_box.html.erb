@@ -1,0 +1,32 @@
+<div class="side_box">
+
+  <%= render :partial => "layouts/round_box_top" %> 
+
+			  <h2>
+			    <span class="header">Surf buddies</span>
+				
+				<div class="actions">
+			      <% unless hide_edit_links? %>
+				    <%= link_to "edit", { :controller => "friendship", :action => "edit" } %>
+			      <% end %>
+				</div>
+
+				<div class="spacer"></div>
+			  </h2>
+
+  <div class="contents">
+    <div id="mosaic">
+	  <% unless @user.friends.empty? %>
+        <%= render :partial => "friendship/friends", :locals => { :hide_text => true } %>
+	  <% else %>
+	    <ul>
+		  <li>None</li>
+		  <div class="spacer"></div>
+		</ul>
+	  <% end %>
+	</div>
+  </div>
+  
+  <%= render :partial => "layouts/round_box_bottom" %>
+
+</div>

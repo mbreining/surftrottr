@@ -1,0 +1,109 @@
+/* Main container: reports stream */
+.top_container #surfspot {
+  float: left;
+  margin-left: 20px;
+  color: #003D6B;
+}
+
+.top_container #actions .map {
+  background: url(../images/icons/map.png) no-repeat 10px 5px;
+  text-indent: 33px;
+  display: block;
+}
+
+.top_container #actions .star {
+  background: url(../images/icons/star_on.png) no-repeat 10px 5px;
+  text-indent: 33px;
+  display: block;
+}
+
+.top_container #actions .post {
+  background: url(../images/icons/add_on.png) no-repeat 10px 5px;
+  text-indent: 33px;
+  display: block;
+}
+
+/* Report (displayed in the reports stream, e.g. '/surfspots/1') */
+.report + .report {
+  border-top: 1px dotted #CCCCCC;
+}
+
+/* Star html hack for IE6 */
+* html .report {
+  border-bottom: 1px dotted #CCCCCC;
+}
+
+.report:hover {
+  background-color: #C3D9FF;
+}
+
+#layout2 .report:hover {
+  background-color: #FFFFFF;
+}
+
+/* New report (javascript drop-down form) */
+#surfspot + #new_report fieldset {
+  font-size: 10pt; 
+  background-color: #AAAAAA; 
+  border: 1px solid #CCCCCC;
+  padding: 0.5em;
+  margin-top: 10px;
+}
+
+#surfspot + #new_report legend {
+  background: white;
+  border: none;
+}
+
+#new_report #input {
+  margin: 5px;
+}
+
+#new_report #column1 {
+  float: left;
+  margin-right: 20px;
+}
+
+#new_report #column2 {
+  float: left;
+}
+
+#new_report label { 
+  width: 10em; 
+  float: left; 
+  text-align: right; 
+  margin-right: 0.2em; 
+  display: block; 
+} 
+
+#new_report .buttons {
+  position: relative; 
+}
+
+#new_report .cancel {
+  position: absolute;
+  right: 90px;
+  bottom: 0;
+  width: 75px;
+  height: 31px;
+  background: #666666;
+  text-align: center;
+  line-height: 31px;
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+#new_report .submit {
+  position: absolute;
+  right: 5px;
+  bottom: 0;
+  width: 75px;
+  height: 31px;
+  background: #666666;
+  text-align: center;
+  line-height: 31px;
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: bold;
+}

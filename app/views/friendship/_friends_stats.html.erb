@@ -1,0 +1,12 @@
+  <ul>
+    <% unless user.friends.empty? %>
+      <% user.friends.each do |friend| %>
+        <li class="friend">
+          <span id="thumbnail">
+		    <%= link_to mini_thumbnail_tag(friend), surfer_stats_path(friend.screen_name), :title => friend.screen_name %>
+		  </span>
+	    </li>
+      <% end %>
+    <% end %>
+    <div class="spacer"></div>
+  </ul>

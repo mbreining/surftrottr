@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <title>The page you were looking for doesn't exist (404)</title>
+  <%= stylesheet_link_tag "site" %>
+  <%= stylesheet_link_tag "boxes" %>
+</head>
+
+  <body>
+    <div id="wrapper">
+
+	  <div id="header">
+	    <div id="top">
+	      <span id="branding">
+	        <%= nav_link image_tag("surftrottr_logo_reflection.png"), "home", "index" %>
+			<%= image_tag("surftrottr_slogan.png") %>
+		  </span>
+		  <% if logged_in? -%>	
+			<span class="account" id="logged_in">		
+	          <%= nav_link "Sign out", "account", "logout" %>
+			  <%= nav_link "Settings", "account", "index" %>
+			</span>
+		  <% else -%>
+		    <span class="account" id="anonymous">
+	          <%= nav_link "Sign in", "site", "index" %>
+			  or
+			  <%= nav_link "Register", "account", "register" %>
+			  for extra features
+			</span>
+		  <% end -%>
+		  <div class="spacer"></div>
+	    </div>
+		<div id="bottom">
+          
+		  <%= render :partial => "layouts/nav" %>
+		  <%= render :partial => "layouts/search" %>
+
+		  <div class="spacer"></div>
+		</div>
+      </div>
+	
+      <%= render_flashes %>
+	
+	  <div id="content">
+	    <div class="layout1">
+		  <div class="main_container">
+		  
+	        <div id="error_content">
+			  <div id="message">
+                The page you were looking for doesn't exist (404)
+		      </div>
+	        </div>
+			
+		  </div>
+		</div>
+	  </div>
+	 
+	  <div class="spacer"></div>
+	 
+	  <div id="footer">
+		  <p>
+		  	<span id="links">
+				<%= nav_link "FAQ", "site", "faq" %> <span class="separator">//</span>
+				<%= nav_link "About", "site", "about" %> <span class="separator">//</span>
+				<%= nav_link "Terms of Use", "site", "terms" %> <span class="separator">//</span>
+				<%= nav_link "Contact us", "site", "contact" %>
+			</span>
+			<span id="copyright">surftrottr (c) 2009</span>
+		  </p>
+		  <div class="spacer"></div>
+	  </div>
+
+	</div>
+  </body>
+</html>

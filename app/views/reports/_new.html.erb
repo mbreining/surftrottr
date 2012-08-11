@@ -1,0 +1,62 @@
+<%= form_for (:standard_report, :url => reports_path(@surfspot), :remote => true) do |f| %> 
+  <fieldset> 
+    <%= render "shared/error_messages", :target => @report %>
+
+    <div id="input">
+	  <div id="column1">
+	    <table>
+	      <tr>
+		    <td><b>Surf conditions</b></td>
+	        <td><%= f.select :surf_conditions, StandardReport::VALID_SURF_CONDITIONS, options = {:prompt => "Required"} %></td>
+		  </tr>
+		  <tr>
+		    <td><b>Wave height</b></td>
+		    <td><%= f.select :wave_height, StandardReport::VALID_WAVE_HEIGHT, options = {:prompt => "Required"} %></td>
+		  </tr>
+          <tr>
+		    <td><b>Wind direction</b></td>
+		    <td><%= f.select :wind_direction, StandardReport::VALID_WIND_DIRECTION, options = {:selected => ""} %></td>
+		  </tr>
+          <tr>
+		    <td><b>Wind speed</b></td>
+		    <td><%= f.select :wind_speed, StandardReport::VALID_WIND_SPEED, options = {:selected => ""} %></td>
+		  </tr>
+          <tr>
+		    <td><b>Paddle out</b></td> 
+		    <td><%= f.select :paddle_out, StandardReport::VALID_PADDLE_OUT, options = {:selected => ""} %></td> 
+		  </tr>
+		  <tr>
+            <td><b>Crowd factor</b></td>
+	        <td><%= f.select :crowd_factor, StandardReport::VALID_CROWD_FACTOR, options = {:selected => ""} %></td>
+		  </tr>
+	    </table>
+	  </div>
+			  
+	  <div id="column2">
+	    <table>
+          <tr>
+		    <td><b>Experienced surfers only?</b></td>
+	        <td>
+			  <%= f.radio_button :advanced_only, true %>Yes
+			  <%= f.radio_button :advanced_only, false %>No
+			</td>
+		  </tr>
+		  <tr>
+		    <td><b>Comments</b></td>
+	        <td><%= f.text_area :text, :rows => 2, :cols => 20 %></td>
+		  </tr>
+	    </table>
+      </div> 
+	  
+	  <div class="spacer"></div>
+	</div>
+	
+	<div class="buttons">
+	  <%= button_to_function "Cancel", :class => "cancel" do |page|
+	        page.visual_effect :blind_up, "new_report"
+		  end
+	  %>
+	  <%= submit_tag "Submit", :class => "submit" %>
+    </div>
+  </fieldset> 
+<% end %>

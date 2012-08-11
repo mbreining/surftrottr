@@ -1,0 +1,113 @@
+<div class="layout1">
+  <div class="main_container">
+    <%= render "shared/error_messages", :target => @user %>
+
+  <div class="myform">
+    <%= form_for @user, :url => { :controller => 'account', :action => 'register' } do |user_form| %>
+	    <fieldset>
+	      <h1>Your account information</h1>
+	      <p class="description">Specify your username, email and password</p>
+		
+		  <div class="legend">
+		    <span id="meaning">required field</span><span id="symbol">*</span>
+			<div class="spacer"></div>
+		  </div>
+		
+		  <div class="row">
+		    <%= render :partial => "screen_name_field_row", :locals => {:form => user_form, :field => "screen_name", :field_title => "User name"} %>
+	 	    <div class="spacer"></div>
+		  </div>
+		  <div class="row">
+		    <%= render "email_field_row", :form => user_form %>
+			<div class="spacer"></div>
+		  </div>
+		  <div class="row">
+	        <%= render :partial => "password_field_row", :locals => {:form => user_form, :field => "password", :description => "Make it strong!"} %>
+	        <div class="spacer"></div>
+		  </div>
+		  <div class="row">
+		    <%= render :partial => "password_field_row", :locals => {:form => user_form, :field => "password_confirmation", :field_title => "Confirm password", :description => "Real strong..."} %>
+            <div class="spacer"></div>
+		  </div>
+		</fieldset>
+
+        <div class="soft_separator"></div>
+		
+        <fieldset>
+		  <h1>Your personal information</h1>
+		  <p class="description">Specify your name and location</p>
+
+		  <div class="legend">
+		    <span id="meaning">required field</span><span id="symbol">*</span>
+			<div class="spacer"></div>
+		  </div>
+		  
+          <%= user_form.fields_for :user_information do |user_info_form| %>
+		    <div class="row">
+		      <label>
+		        First name
+				<span class="required_field">*</span>
+		        <span class="description">Your first name</span>
+		      </label>
+            <%= user_info_form.text_field :first_name,
+                        :size => Surftrottr::Application.config.html_text_field_size,
+                        :maxlength => Surftrottr::Application.config.db_string_max_length,
+                        :class => "text" %>
+			  <div class="spacer"></div>
+			</div>
+			<div class="row">
+		      <label>
+		        Last name
+		        <span class="description">Your last name</span>
+		      </label>
+            <%= user_info_form.text_field :last_name,
+                        :size => Surftrottr::Application.config.html_text_field_size,
+                        :maxlength => Surftrottr::Application.config.db_string_max_length,
+                        :class => "text" %>
+			  <div class="spacer"></div>
+			</div>
+			<div class="row">
+		      <label>
+		        City
+				<span class="required_field">*</span>
+		        <span class="description">Your city</span>
+		      </label>
+            <%= user_info_form.text_field :city,
+                        :size => Surftrottr::Application.config.html_text_field_size,
+                        :maxlength => Surftrottr::Application.config.db_string_max_length,
+                        :class => "text" %>
+			  <div class="spacer"></div>
+			</div>
+			<div class="row">
+		      <label>
+		        State
+				<span class="required_field">*</span>
+		        <span class="description">Your state</span>
+		      </label>
+            <%= user_info_form.text_field :state,
+                        :size => Surftrottr::Application.config.html_text_field_size,
+                        :maxlength => Surftrottr::Application.config.db_string_max_length,
+                        :class => "text" %>
+			  <div class="spacer"></div>
+			</div>
+		  <% end %>
+		</fieldset>
+ 
+        <div class="soft_separator"></div>
+ 
+		<fieldset>
+          <h1>Security test</h1>
+		  <p class="description">One last test to make sure that you're human</p>
+		  
+		  <div id="captcha">
+        <%= recaptcha_tags(:display => { :theme => "white" }) %>
+		  </div>
+		</fieldset>
+
+		<%= submit_tag "Register!", :class => "submit" %>
+		
+	    <% end %>
+	  </div>
+
+  </div>
+</div>

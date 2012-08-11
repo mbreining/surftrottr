@@ -1,0 +1,159 @@
+<div class="entry_wrapper" id="visibility_neutral">
+<div class="entry" id="surf_session_<%= surf_session.id %>">
+
+  <div class="body">
+  
+    <div class="side">
+      <% if not hide_surfer %>
+	    <div class="avatar">
+	      <% user = User.find(surf_session.user_id) %>
+	      <%= link_to thumbnail_tag(user), surfer_url(user.screen_name) %>
+	    </div>
+	  <% end %>
+
+	  <div class="spacer"></div>
+	</div>
+
+	<div class="main" id="<%= layout %>">
+	  <div class="misc">
+		<div class="actions">
+	      <% if media_size == "mini" || media_size == "thumb" %>
+		    <%= link_to "show", :controller => "surf_sessions", :action => "show", :id => surf_session.id %>
+	      <% else %>
+	        <script type="text/javascript" src="http://w.sharethis.com/button/sharethis.js#publisher=d0183d25-49fa-486e-b8f1-5005ccf3f4c2&amp;type=website"></script>
+            <% unless hide_edit_links %>
+	          <%= link_to 'edit', edit_surf_session_path(surf_session) %>
+		      <%= link_to 'remove', surf_session_path(surf_session), :method => "delete", :confirm => 'Are you sure you want to remove this surf session', :title => "Remove" %>
+		    <% end %>
+		  <% end %>
+	    </div>
+	  
+	    <% if media_size == "mini" || media_size == "thumb" %>
+	      <% if !surf_session.photos.empty? || !(surf_session.embed_link.nil? || surf_session.embed_link == "") %>
+	        <div class="media">
+              <% if !(surf_session.embed_link.nil? || surf_session.embed_link == "") %>
+		        <div class="video">
+		          <%= link_to image_tag("#{media_size}_video.jpg"), :controller => "surf_sessions", :action => "show", :id => surf_session.id %>
+		        </div>
+		      <% elsif !surf_session.photos.empty? %>
+		        <div class="photos">
+		          <%= link_to image_tag(surf_session.photos.first.image.url(media_size)),
+		   	  		          :controller => "surf_sessions", :action => "show", :id => surf_session.id %>
+		        </div>
+		      <% end %>
+	        </div>
+	      <% end %>
+	    <% end %>
+	  </div>
+	  
+	  <div class="content">
+	    <div class="surfspot">
+	      <% unless hide_surfspot %>
+	        <% surfspot = Surfspot.find_by_id(surf_session.surfspot_id) %>
+	        <%= link_to surfspot.full_name, surfspot_path(surfspot), :title => surfspot.full_name %>
+		  <% end %>
+		  <span id="rating">
+		    <% if surf_session.rating == 0 %>
+		      <%= image_tag "icons/rating_0.png" %>
+		    <% elsif surf_session.rating == 1 %>
+		      <%= image_tag "icons/rating_1.png" %>
+		    <% elsif surf_session.rating == 2 %>
+		      <%= image_tag "icons/rating_2.png" %>
+		    <% elsif surf_session.rating == 3 %>
+		      <%= image_tag "icons/rating_3.png" %>
+		    <% elsif surf_session.rating == 4 %>
+		      <%= image_tag "icons/rating_4.png" %>
+		    <% elsif surf_session.rating == 5 %>
+		      <%= image_tag "icons/rating_5.png" %>
+		    <% end %>
+		  </span>
+	    </div>
+	  
+	    <div class="date">
+	      <%= image_tag "icons/calendar.png" %>
+	      <%= surf_session.actual_date.to_datetime.strftime "%a, %d %b %Y" %>
+	    </div>
+
+	    <div class="description">
+	      <%= sanitize(auto_link(surf_session.text.gsub(/\r?\n|\r/, '<br>'))) %>
+	    </div>
+	  
+	    <div class="info">
+		  <% unless surf_session.surfboard.nil? %>
+		    <b>Surfboard </b><%= link_to surf_session.surfboard.name, surfboard_path(surf_session.surfboard) %>
+			<br />
+		  <% end %>
+		  <% if !is_field_empty?(surf_session.surf_conditions) %>
+			<b>Surf conditions </b><%= surf_session.surf_conditions %>
+			<br />
+		  <% end %>
+		  <% if !is_field_empty?(surf_session.wave_height) %>
+			<b>Wave height </b><%= surf_session.wave_height %>
+		    <br />
+		  <% end %>
+		  <% if !is_field_empty?(surf_session.crowd_factor) %>
+			<b>Crowd factor </b><%= surf_session.crowd_factor %>
+			<br />
+		  <% end %>
+	    </div>
+
+        <div class="spacer"></div>
+	  </div>
+	</div>
+
+  </div>
+		
+  <div class="footer">
+	<span class="creation_info">
+	  <% user = User.find(surf_session.user_id) %>
+	  Logged <% if not hide_surfer %>by <%= link_to user.screen_name, surfer_path(user.screen_name) %><% end %>
+	  <%= time_ago_in_words surf_session.created_at %> ago
+	</span>
+	  
+	<span class="add_comment">
+	  <span id="icon">
+		<%= image_tag "icons/comments.png" %>
+	  </span>
+	  <span id="link">
+		<%= link_to surf_session.comments.length == 0 ? "add a comment" : "comments(#{surf_session.comments.count})", 
+							{ :url => { :controller => "comments", :action => "new", :surf_session_id => surf_session.id },
+                :method => :get, :remote => true },
+							:href => { :controller => "comments", :action => "new", :surf_session_id => surf_session.id },
+							:title => "Add a comment" %>
+	  </span>
+	</span>
+  </div>
+	
+  <div id="message_<%= surf_session.id %>">
+  </div>
+  
+  <div class="comments"> 
+	<div id="comments_for_commentable_<%= surf_session.id %>">
+	</div>
+	  
+	<div id="new_comment_form_for_commentable_<%= surf_session.id %>">
+	</div>
+  </div>	
+	
+  <% if media_size == "normal" %>
+	<% if !surf_session.photos.empty? || !(surf_session.embed_link.nil? || surf_session.embed_link == "") %>
+	  <div class="media">
+		<% if !(surf_session.embed_link.nil? || surf_session.embed_link == "") %>
+		  <div class="video">
+			<%= surf_session.embed_link %>
+		  </div>
+		<% end %>
+		<% if !surf_session.photos.empty? %>
+		  <div class="photos">
+			<% surf_session.photos.each do |photo| %>
+			  <%= image_tag(photo.image.url("normal")) %>
+		    <% end %>
+		  </div>
+		<% end %>
+	  </div>
+	<% end %>
+  <% end %>
+  
+  <div class="spacer"></div>
+</div>
+</div>

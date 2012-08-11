@@ -1,0 +1,76 @@
+/* Wrapper */
+#wrapper {
+  width: auto;
+}
+
+/* Header */
+#welcome_header {
+  padding: 0;
+  text-align: center;
+}
+
+	#welcome_header #branding {
+		float: none;
+		background-color: #003D6B;
+		border-bottom: 5px solid #689CD2;
+	}
+
+	#welcome_header #login {
+		position: relative;
+		float: none;
+		width: auto;
+		padding: 20px;
+	}
+
+	#welcome_header #login form {
+		/* margin: 0 auto; */
+	}
+
+		#welcome_header #login form #input {
+			position: relative;
+			float: none;
+			width: auto;
+		}
+
+			#welcome_header #login form #input label {
+				float: none;
+				width: auto;
+				margin: 1px 0;
+				text-align: left;
+			}
+
+			#welcome_header #login form #input input[type="text"],
+			#welcome_header #login form #input input[type="password"] {
+				float: none;
+				width: 100%;
+				font-size: 12px;
+				border: solid 1px #aacfe4;
+				margin-bottom: 10px;
+				padding: 8px 5px;
+			}
+
+		#welcome_header #login form #submit {
+			float: left;
+			margin: 10px 10px 0 0;
+		}
+
+			#welcome_header #login #submit input {
+				display: block;
+				padding: 8px 30px;
+			}
+
+/* Main content */
+#welcome_content {
+  background: none;
+  height: auto;
+  max-width: none;
+}
+
+/* Footer */
+#footer {
+  text-align: center;
+}
+
+#footer a {
+  color: #0066B3;
+}

@@ -1,0 +1,8 @@
+<p>
+  <% for s in find_surfspots(object[0], object[1]) %>
+    <%= link_to h(s.name), :controller => "surfspots",
+						   :action => "show",
+						   :id => s.id %>
+	<br />
+  <% end %>
+</p>

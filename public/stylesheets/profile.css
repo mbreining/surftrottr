@@ -1,0 +1,693 @@
+/* Main container: recent activity and journal */
+#recent_activity, #journal {
+  position: relative;
+}
+
+/* IE6 hack for floats in a relative container */
+/* This fix gives a layout to the relative container */
+/* Hides from IE/Mac \*/
+* html #recent_activity, * html #journal {
+  height: 1%;
+}
+/* End hide from IE/Mac */
+
+.event, .entry {
+  position: relative;
+  display: block;
+  min-height: 20px;
+  padding: 10px;
+  font-size: 12px;
+}
+
+/* IE6 hack for floats in a relative container */
+/* This fix gives a layout to the relative container */
+/* Hides from IE/Mac \*/
+* html .event, * html .entry {
+  height: 1%;
+  border-bottom: 1px solid #CCCCCC;
+}
+/* End hide from IE/Mac */
+
+.event + .event,
+.entry_wrapper + .entry_wrapper {
+  border-top: 1px solid #CCCCCC;
+}
+
+.event .abstract {
+  float: left;
+  width: 555px;
+}
+
+.event .abstract a, .event .abstract a:hover {
+  color: #333333;
+  font-weight: bold;
+}
+
+.entry .body {
+  display: inline; /* IE6 double-margin float hack */
+  position: relative;
+}
+
+.entry .body .side {
+  position: relative;
+  float: left;
+}
+
+.entry .body .main {
+  position: relative;
+  float: left;
+}
+
+	.entry .body #default {
+		width: 100%;
+	}
+
+	.entry .body #w_avatar {
+		width: 89%;
+	}
+
+	.entry .body #w_avatar_w_rating {
+		width: 84%;
+	}
+
+	.entry .body #w_rating {
+		width: 94%;
+	}
+	
+.entry .body .main .misc {
+  position: relative;
+  float: right;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.entry .voted {
+  position: relative;
+  float: left;
+  width: 50px;
+  margin: 0 5px;
+  margin-bottom: 10px;
+  font-size: 11px;
+  font-style: italic;
+}
+
+.entry .voted .align {
+  position: absolute;
+  top: 1px;
+}
+
+.actions {
+  position: relative;
+  display: inline;
+  z-index: 10;
+}
+
+.entry .actions {
+  float: right;
+  margin-left: 7px;
+}
+
+.entry .body .main .misc .actions {
+  margin-bottom: 10px;
+}
+
+/* iPhone hack*/
+@media only screen and (max-device-width: 480px) { 
+  .event .actions,
+  .entry .actions {
+    display: block;
+  }
+}
+
+.layout1 .entry .actions {
+  display: inline;
+}
+
+.event:hover .actions,
+.entry:hover .actions {
+  display: inline;
+}
+
+.actions > a {
+  padding: 1px 2px;
+  font-size: 10px;
+  font-weight: bold;
+  background-color: #689CD2;
+  color: #FFFFFF;
+  border: 1px solid #689CD2;
+}
+
+.event .actions > a,
+.entry .actions > a {
+  background-color: #FFFFFF;
+  color: #CCCCCC;
+  border: 1px solid #CCCCCC;
+}
+
+.event:hover .actions > a,
+.entry:hover .actions > a {
+  font-weight: bold;
+  background-color: #689CD2;
+  color: #FFFFFF;
+  border: 1px solid #689CD2;
+}
+
+.actions > a:hover {
+  text-decoration: none;
+  background-color: #003D6B;
+  color: #FFFFFF;
+  border: 1px solid #003D6B;
+}
+
+
+.event:hover .actions > a:hover,
+.entry:hover .actions > a:hover {
+  text-decoration: none;
+  background-color: #003D6B;
+  color: #FFFFFF;
+  border: 1px solid #003D6B;
+}
+
+.layout2 #visibility_highlite {
+  background-color: #FFFFE0;
+}
+
+.layout2 #visibility_hide {
+  opacity: 0.3;
+}
+
+.entry .vote {
+  float: left;
+  width: 20px;
+  padding-right:  10px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  color: #FF8000;
+}
+
+.entry .vote .value {
+  padding: 3px 0 5px;
+}
+
+.entry .avatar {
+  display: inline;  /* IE6 double-margin float hack */
+  float: left;
+  margin-right: 10px;
+}
+
+.entry .avatar img {
+  padding: 1px;
+  border: 1px solid #999999;
+}
+
+.entry .surfspot,
+.entry .title {
+  display: block;
+  /* display: inline;   IE6 double-margin float hack */
+  font-size: 14px;
+}
+
+.entry .surfspot {
+  margin-bottom: 5px;
+}
+
+.entry .surfspot #rating {
+  margin-left: 5px;
+}
+
+.entry .surfspot a, .entry .surfspot a:hover,
+.entry .title {
+  color: #003D6B;
+  font-weight: bold;
+}
+
+.entry .date {
+  display: block;
+  /* display: inline;   IE6 double-margin float hack */
+  width: 100%;
+  font-weight: bold;
+}
+
+.entry .date img {
+  float: left;
+  margin-right: 5px;
+}
+
+.entry .text,
+.entry .description {
+  display: block;
+  /* display: inline;   IE6 double-margin float hack */
+  width: 100%;
+}
+
+.entry .description {
+  margin-top: 5px;
+}
+
+.entry .info {
+  display: block;
+  /* display: inline;   IE6 double-margin float hack */
+  width: 100%;
+  margin-top: 5px;
+}
+
+.entry .media {
+  position: relative;
+  z-index: 10;
+}
+
+.entry .media img {
+  float: right;
+  padding: 2px;
+  border: 1px solid #999999;
+}
+
+.layout1 .entry .media {
+  position: relative;
+  float: left;
+  width: 100%;
+  margin-top: 10px;
+  border-top: 1px solid #CCCCCC;
+  padding-top: 20px;
+}
+
+.layout1 .entry .media .photos img,
+.layout1 .entry .media .video object,
+.layout1 .entry .media .video embed {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  float: none;
+}
+
+.entry .footer {
+  float: left;
+  margin-top: 5px;
+  position: relative;
+  width: 100%;
+}
+
+.entry .footer .creation_info {
+  float: left;
+  color: #999999;
+  font-size: 11px;
+  font-style: italic;
+  margin-top: 0;
+}
+
+.entry .footer .add_comment {
+  float: right;
+  font-size: 11px;
+}
+
+.entry .footer .add_comment #icon,
+.entry .footer .add_comment #link {
+  float: left;
+}
+
+.entry .footer .add_comment #icon {
+  margin-right: 5px;
+}
+
+.event .creation_info {
+  font-size: 11px;
+  font-style: italic;
+  color: #999999;
+  padding-left: 0.2em;
+}
+
+.event .remove {
+  float: right;
+  display: none;
+}
+
+.event:hover .remove {
+  display: inline;
+}
+
+/* Photos */
+.layout2 .album {
+  position: relative;
+  padding-top: 10px;
+  padding-left: 4px;
+}
+
+.layout2 .album a {
+  float: left;
+  height: 110px;
+  margin: 6px;
+}
+
+.layout2 .album a img {
+  float: left;
+  padding: 4px;
+  border: 1px solid #999999;
+}
+
+/* Header */
+.main_container .header {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.main_container .header #avatar {
+  float: left;
+  width: 200px;
+}
+
+.main_container .header #avatar #picture {
+  position: relative;
+  float: left;
+  border: none;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.main_container .header #avatar #picture img {
+  margin-right: 2px;
+  padding: 5px;
+  border: 1px solid #CCC;
+}
+
+.main_container .header #surfer {
+  position: relative;
+  float: right;
+  margin-bottom: 20px;
+  width: 410px;
+  text-align: left;
+  color: #3063A5;
+}
+
+.main_container .header #info {
+  float: left;
+}
+
+.main_container .header h2 {
+  margin: 0 0 7px 0;
+  font-size: 22px; 
+  font-weight: bold;
+  color: #003D6B;
+}
+
+.main_container .header ul {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main_container .header li {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  color: #3063A5;
+}
+
+.main_container .header li a,
+.main_container .header li a:visited {
+  text-decoration: none;
+  font-weight: bold;
+  color: #003D6B;
+}
+
+.main_container .header #actions {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: #999;
+  font-size: 11px;
+}
+
+.main_container .header #actions ul {
+  list-style: none;
+}
+
+.main_container .header #actions a.button {
+  position: relative;
+  display: block;
+  color: #666;
+  font-size: 13px;
+  font-weight: bold;
+  height: 27px;
+  line-height: 26px;
+  text-decoration: none;
+  width: 140px;
+}
+
+.main_container .header #actions a:hover.button {
+  color: #FF8000;
+}
+
+.main_container .header #actions .stats {
+  background: url(../images/icons/stats.png) no-repeat 10px 5px;
+  text-indent: 33px;
+  display: block;
+}
+
+.main_container .header #actions .contact {
+  background: url(../images/icons/letter.png) no-repeat 10px 5px;
+  text-indent: 33px;
+  display: block;
+}
+
+.main_container .header #actions .add {
+  background: url(../images/icons/friend.png) no-repeat 10px 5px;
+  text-indent: 33px;
+  display: block;
+}
+
+.main_container .header #actions .post {
+  background: url(../images/icons/post.png) no-repeat 10px 5px;
+  text-indent: 33px;
+  display: block;
+}
+
+.main_container .header #actions span.icon {
+  float: left;
+}
+
+.main_container .header #actions span.link {
+  float: left;
+}
+
+.main_container .body #post {
+  position: relative;
+  margin-top: -30px;
+  margin-bottom: 30px;
+  text-align: left;
+  width: 100%;
+}
+
+.main_container .body #post #triangle {
+  float: left;
+  margin-left: 30px;
+  font-size: 0px; line-height: 0%; width: 0px;
+  border-top: 20px solid #FFF;
+  border-left: 20px solid #E5ECF3;
+}
+
+.main_container .body #post #body {
+  float: left;
+  width: 100%;
+}
+
+.main_container .body #post .entry {
+  background-color: #E5ECF3;
+}
+
+.main_container .body #post .empty_entry {
+  position: relative;
+  display: block;
+  min-height: 50px;
+  padding: 10px;
+  font-size: 12px;
+  background-color: #E5ECF3;
+}
+
+.main_container .body #post .empty_entry .getting_started {
+  margin-top: 10px;
+}
+
+/* Surf buddies */
+.side_container .actions {
+  float: right;
+}
+
+.side_container .contents {
+  position: relative;
+}
+
+.side_container #mosaic li {
+  float: left;
+  width: auto;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.side_container #mosaic li img {
+  margin-right: 2px;
+  margin-bottom: 1px;
+  border: 1px solid #DDDDDD;
+}
+
+/* Comments */
+.side_box #comments li {
+  margin-bottom: 7px;
+}
+
+.side_box #comments li img {
+  float: left;
+  padding: 1px;
+  border: 1px solid #999999;
+}
+
+.side_box #comments li p {
+  display: inline;
+  float: left;
+  width: 280px;
+  margin: 0;
+  margin-left: 10px;
+}
+
+.side_box #comments li p .date {
+  display: block;
+  font-size: 11px;
+  font-style: italic;
+  color: #999999;
+}
+
+/* Gear and Surfboard */
+.entry .text ul, .entry .text li {
+  position: relative;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.entry .text #name {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #003D6B;
+  font-weight: bold;
+}
+
+.entry .text #link {
+  margin-top: 10px;
+}
+
+/* Comments */
+.comments {
+  position: relative;
+  float: left;
+  width: 100%;
+}
+
+.comments .comment {
+  width: 100%;
+  margin: 10px 0;
+}
+
+.comments .comment img {
+  float: left;
+  padding: 1px;
+  border: 1px solid #999999;
+}
+
+.comments .comment p {
+  display: inline;
+  float: left;
+  width: 500px;
+  margin: 0;
+  margin-left: 5px;
+}
+
+.comments .comment p #prefix {
+  font-weight: bold;
+}
+
+.comments .comment p #creation_info {
+  font-size: 11px;
+  font-style: italic;
+  color: #999999;
+}
+
+.comments fieldset {
+  position: relative;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+.comments fieldset textarea {
+  float: left;
+  width: 80%;
+  padding: 5px 2px;
+  border: solid 1px #aacfe4;
+}
+
+.comments fieldset input {
+  position: absolute;
+  bottom: 2px;
+  right: 25px;
+  width: 65px;
+  height: 31px;
+  margin-top: 5px;
+  margin-left: 10px;
+  background: #666666;
+  text-align: center;
+  line-height: 31px;
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+/* Stats */
+.main_container .stats {
+  position: relative;
+}
+
+.stats h1 {
+  margin: 0;
+  font-size: 18pt;
+  font-weight: bold;
+  color: #003D6B;
+}
+
+.stats .summary {
+  position: relative;
+  margin-top: 20px;
+}
+
+.stats .summary ul {
+  float: left;
+  list-style: none;
+  margin: 0;
+  margin-right: 40px;
+  padding: 0;
+}
+
+.stats .summary li {
+  padding: 0.1em;
+  text-align: left;
+}
+
+.stats .summary li span.name {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.stats .summary li span.value {
+}
+
+.stats .graph {
+  margin-top: 20px;
+}
+
+.stats .graph h2 {
+  font-size: 13px;
+  font-weight: bold;
+}

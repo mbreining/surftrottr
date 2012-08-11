@@ -1,0 +1,10 @@
+<div id="picture">
+  <%= avatar_tag(@user) %>
+  
+  <div class="actions">
+    <% unless hide_edit_links? %>
+	  <%= link_to "edit", { :controller => "avatar", :action => "upload" }, { :title => "Edit" } %>
+	  <!-- %= link_to image_rollover_tag("icons/edit.png", "icons/edit_on.png"), { :controller => "avatar", :action => "upload" }, { :title => "Edit", :alt => "(edit)" } % -->
+    <% end %>
+  </div>
+</div>

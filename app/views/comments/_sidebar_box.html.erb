@@ -1,0 +1,33 @@
+<div class="side_box">
+  <%= render "layouts/round_box_top" %>
+
+				<h2>
+				  <span class="header">Recent comments</span>
+				  <div class="spacer"></div>
+				</h2>
+
+				<div class="contents">
+				  <div id="comments">
+                    <ul>
+                        <% @comments.each do |comment| %>
+                          <li>
+						    <span class="thumbnail">
+							  <%= link_to micro_tag(comment.user), surfer_path(comment.user.screen_name) %>
+							</span>
+							<p>
+							  <b>
+                  "<%= link_to truncate(comment.body, :length => 80), :controller => "comments", :action => "show" , :id => comment.id %>"
+							  </b>
+							  <span class="date">
+							    <%= comment.created_at.to_datetime.strftime "%a, %d %b %Y" %>
+							  </span>
+							</p>
+						  </li>
+                        <% end %>
+                      <div class="spacer"></div>
+					</ul>
+				  </div>
+				</div>
+
+  <%= render "layouts/round_box_bottom" %>
+</div>

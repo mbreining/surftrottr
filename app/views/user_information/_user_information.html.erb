@@ -1,0 +1,25 @@
+<div id="info">
+    <h2>
+	  <%= @user_information.full_name %>
+	  (<%= @user.screen_name %>)
+	  <div class="actions">
+	    <% unless hide_edit_links? %>
+	      <%= link_to "edit", { :controller => "user_information", :action => "edit" }, { :title => "Edit" } %>
+	    <% end %>
+	  </div>
+	</h2>
+	
+    <ul>
+	  <li>
+	    <% if @user_information.city.length != 0 %>
+		  surfing out of <b><%= @user_information.location %></b>
+		<% end %>
+	  </li>
+   	  <li>surftrotting since <b><%= @user.created_at.strftime('%b %d, %Y') %></b></li>
+	  <div class="spacer"></div>
+    </ul>
+
+    <span>
+	  <b style="font-size: 20px"><%= @user.reputation %></b> Reputation <span style="font-style:italic;font-size:11px">(<%= link_to "what's this?", "http://www.surftrottr.com/site/faq#q40" %>)</span>
+	</span>
+</div>

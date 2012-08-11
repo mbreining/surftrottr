@@ -1,0 +1,48 @@
+<div class="layout2">
+
+  <div class="side_container">
+          <%= render :partial => "map" %>
+		  <%= render :partial => "nearby_surfspots" %>
+		  <%= render :partial => "surfers" %>
+  </div>
+
+  <div class="main_container" id="xsnazzy">
+
+	<%= render :partial => "layouts/xsnazzy_box_top", :locals => { :colors => "white_grey" } %>
+	
+    <div class="header">
+      <%= render :partial => "surfspot_header" %>
+    </div>
+	
+	<div class="body">
+	
+      <ul id="menu">
+	  <li><%= link_to "<span>Reports<div id=\"count\">(#{@surfspot.reports.count})</div></span>", surfspot_path(@surfspot) %></li>
+	  <li><%= link_to "<span>Sessions<div id=\"count\">(#{@surfspot.surf_sessions.count})</div></span>", surfspot_sessions_path(@surfspot.id) %></li>
+      <li><%= link_to "<span>Photos<div id=\"count\">(#{@surfspot.photos.length})</div></span>", surfspot_photos_path(@surfspot.id), :class => 'active' %></li>
+	  </ul>
+
+    <div class="spacer"></div>
+
+  	    <% unless @photos.length != 0 %>
+	      <br />
+	      <span style="font-size: 10pt; padding: 0.5em">
+	        No photo uploaded yet.
+	      </span>
+	    <% else %>
+	      <div class="album">
+		    <%= render :partial => "photos/album_photo", :collection => @photos, :locals => { :photo_size => "thumb" } %>
+		    <div class="spacer"></div>
+	      </div>
+	    <% end %>
+
+   	    <div id="pagination">
+	      <!-- %= will_paginate @photos % -->
+	    </div>
+		
+    </div>
+	
+    <%= render :partial => "layouts/xsnazzy_box_bottom", :locals => { :colors => "white_grey" } %>
+  </div>
+</div>
+

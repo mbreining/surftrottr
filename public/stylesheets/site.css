@@ -1,0 +1,345 @@
+body {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  background-color: #E5ECF3;
+  color: #333333;
+  text-align: center;  /* IE6 hack to compensate lack of support for 'margin: 0 auto' */
+  margin: 0;
+}
+
+strong, em, b, i, h1, h2, h3, h4, h5, h6 {
+  font-family: "Lucida Sans", "Lucida Sans Unicode", "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+}
+
+/* Needed for IE and Firefox */
+img {
+  border: 0;
+}
+
+/* IE clear/height bug */
+/* http://stackoverflow.com/questions/473143/extra-vertical-space-in-ie-after-div-clear */
+.spacer {
+  clear: both;
+  height: 0px;
+  overflow: hidden;
+}
+
+a {
+  color: #0066B3;
+  text-decoration: none;	
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Wrapper */
+#wrapper {
+  min-width: 1000px;
+  text-align: left;
+}
+
+/* Header */
+#header {
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+#header a, #header a:hover, #header a:visited {
+  font-weight: bold;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+#header #top {
+  position: relative;
+  padding: 0 20px;
+  background-color: #003D6B;
+}
+
+#header #top #branding {
+  float: left;
+  padding-top: 2px;
+}
+
+#header #top .account {
+  position: absolute;
+  right: 20px;
+  padding: 20px 5px 12px 5px;
+  color: #689CD2;
+}
+
+#header #top #logged_in a {
+  margin-left: 15px;
+}
+
+#header #bottom {
+  position: relative;
+  height: 35px;
+  padding: 0 20px 0 15px;
+  border-bottom: 5px solid #A2D1E0;
+  background-color: #689CD2;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+#header #bottom #nav {
+  float: left;
+}
+
+#header #bottom #search {
+  float: right;
+  margin: 5px 0;
+}
+
+/* Main content */
+#content {
+  position: relative;
+  width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.main_container {
+  position: relative;
+  min-height: 500px;
+  _height: 500px; /* Underscore hack for IE6 which doesn't recognize min-height */
+  text-align: left;
+}
+
+.side_container {
+  position: relative;
+  text-align: left;
+}
+
+/* Layout1: one column - centered */
+/* About, Terms, Contact, all Edits, Find */
+.layout1 .main_container {
+  width: 650px;
+  margin: 0 auto;
+}
+
+/* Layout2: two columns - left main column, right side column */
+/* Home, FAQ, Profile, Surfspot */
+.layout2 .main_container {
+  /* display: inline;  IE6 double-margin fix */
+  float: left;
+  width: 650px;
+}
+
+.layout2 .side_container {
+  /* display: inline;  IE6 double-margin fix */
+  float: right;
+  width: 335px;
+}
+
+/* Nav */
+#header #nav ul, #header #nav {
+  position: relative;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#header #nav li {
+  position: relative;
+  float: left;
+  display: block;
+  font-size: 14px;
+  height: 100%;
+  padding: 0 10px 4px 0;
+  line-height: 35px;
+}
+
+#header #nav ul li a:link, #header #nav ul li a:visited,
+#header #nav ul li .drop_down {
+  display: block;
+  height: 100%;
+  text-decoration: none;
+  padding: 0 10px;
+}
+
+#header #nav ul li a:hover,
+#header #nav ul li .drop_down:hover {
+  background: #EBEFF7;
+  color: #689CD2;
+}
+
+#header #nav ul ul {
+  display: none;
+  position: absolute;
+  height: auto;
+  margin-top: 0px;
+  margin-left: -1px;
+  border: 1px solid #689CD2;
+  border-top: none;
+  width: 120px;
+  background: #FFF;
+  line-height: 20px;
+  z-index: 1000;
+}
+
+#header #nav ul li:hover ul {
+  display: block;
+}
+
+#header #nav ul ul li {
+  float: none;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+#header #nav ul ul li a:link, #header #nav ul ul li a:visited {
+  font-size: 90%;
+  color: #003D6B;
+  padding: 0;
+  padding-left: 10px;
+  clear: both;
+  border-bottom: solid 1px #DEDEDE;
+}
+
+#header #nav ul li ul li a:hover {
+  color: #3B5998;
+  background: #EBEFF7;
+}
+
+#header #nav ul li .drop_down .arrow_down {
+  font-size: 0px; line-height: 0%; width: 0px;
+  border-top: 6px solid #FFFFFF;
+  border-left: 3px solid #689CD2;
+  border-right: 3px solid #689CD2;
+  margin-left: 5px;
+}
+
+#header #nav ul li .drop_down:hover .arrow_down {
+  font-size: 0px; line-height: 0%; width: 0px;
+  border-top: 6px solid #689CD2;
+  border-left: 3px solid #EBEFF7;
+  border-right: 3px solid #EBEFF7;
+  margin-left: 5px;
+}
+
+/* Search */
+.search_results h1 {
+  position: relative;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+  padding: 0.5em;
+  color: #003D6B;
+}
+
+.search_results ul, .search_results ul li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Footer */
+#footer {
+  margin-top: 20px;
+  padding: 20px;
+  border-top: 5px solid #FF8000;
+  background-color: #36393D;
+  color: #FFFFFF;
+}
+
+#footer #copyright {
+ float: left;
+}
+
+#footer #links {
+  float: right;
+}
+
+#footer #links .separator {
+  font-size: 10px;
+  color: #FF8000;
+}
+
+#footer a, #footer a.visited {
+  text-decoration: none;
+  color: white;
+}
+
+#footer a:hover {
+  text-decoration: underline;
+}
+
+/* Pagination */
+#pagination {
+  padding: 0.5em;
+  font-weight: bold;
+}
+
+/* Flashes */
+.flash {
+  width: 900px; 
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#permanent {
+  border: 2px solid #FF0000; 
+  background-color: #FFBFBF;
+  color: #FF3300;
+}
+
+#error {
+  border: 2px solid #FFCC00; 
+  background-color: #FFFFBD;
+  color: #FF8800;
+}
+
+#notice {
+  border: 2px solid #90b557;
+  background-color: #DDEEC2;
+  color: #3B5D14;
+}
+
+/* Error pages */
+#error_content {
+  position: relative;
+  width: 640px;
+  height: 360px;
+  margin: 0 auto;
+  margin-top: 50px;
+  background: #F0F0F0 url(../images/wipeout.jpg) no-repeat;
+  border: 2px solid #FFCC00;
+  color: #FF8800;
+}
+
+#error_content #message {
+  position: absolute;
+  width: 630px;
+  height: 25px;
+  top: 0px;
+  background: #E6F4FF;
+  opacity: 0.5; 
+  padding: 5px;
+  font-size: 15pt;
+  text-align: center;
+}
+
+/* Debug */
+#debug {
+  margin-top: 3em;
+  margin-left: auto;
+  text-align: center;
+}
+
+#debug a, #debug a.visited {
+  text-decoration: none;
+  color: #002350;
+}
+
+fieldset.debug_info {
+  text-align: left; 
+  margin: 1em; 
+  background: #eee;
+}

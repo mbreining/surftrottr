@@ -1,0 +1,99 @@
+<div class="entry_wrapper" id="visibility_neutral">
+<div class="entry" id="surfboard_<%= surfboard.id %>">
+
+	<div class="avatar">
+	  <% user = User.find(surfboard.user_id) %>
+	  <%= link_to thumbnail_tag(user), surfer_url(user.screen_name) %>
+	</div>
+	
+  <div class="body" id="w_avatar">
+  
+	<% if photo_size == "thumb" %>
+	  <% unless surfboard.photos.empty? %>
+	      <div class="media">
+	        <div class="photos">
+			  <%= link_to image_tag(surfboard.photos.first.image.url("thumb")),
+						  surfboard_path(surfboard) %>
+	        </div>
+	      </div>
+	  <% end %>
+	<% else %>
+	  <div class="actions">
+	    <script type="text/javascript" src="http://w.sharethis.com/button/sharethis.js#publisher=d0183d25-49fa-486e-b8f1-5005ccf3f4c2&amp;type=website"></script>
+        <% unless hide_edit_links %>
+	      <%= link_to 'edit', edit_surfboard_path(surfboard) %>
+		  <%= link_to 'remove', surfboard_path(surfboard), :method => "delete", :confirm => 'Are you sure you want to remove this surfboard?', :title => "Remove" %>
+		<% end %>
+	  </div>
+	<% end %>
+    
+	<div class="content">
+	  <span class="text">
+	    <ul>
+		  <li id="name">
+		    <%= sanitize(surfboard.category + " - " + surfboard.length + " " + surfboard.brand) %>
+		  </li>
+	      <% if !is_field_empty?(surfboard.description) %>
+		    <li>
+              <%= sanitize(auto_link(surfboard.description)) %>
+            </li>
+	      <% end %>
+	      <% if !is_field_empty?(surfboard.link) %>
+		    <li id="link">
+              <b>Link </b><%= sanitize(auto_link(surfboard.link)) %>
+            </li>
+		  <% end %>
+		</ul>
+	  </span>
+	  
+	  <span class="spacer"></span>
+    </div>
+  </div>
+	  
+	  <div class="footer">
+	    <span class="creation_info">
+	      <% user = User.find(surfboard.user_id) %>
+	      Added by <%= link_to user.screen_name, surfer_path(user.screen_name) %>
+          <%= time_ago_in_words surfboard.created_at %> ago
+	    </span>
+	  
+	    <span class="add_comment">
+		  <span id="icon">
+		    <%= image_tag "icons/comments.png" %>
+		  </span>
+		  <span id="link">
+		    <%= link_to surfboard.comments.empty? ? "add a comment" : "comments(#{surfboard.comments.count})", 
+		                       { :url => { :controller => "comments", :action => "new", :surfboard_id => surfboard.id },
+                             :method => :get, :remote => true },
+							   :href => { :controller => "comments", :action => "new", :surfboard_id => surfboard.id },
+						       :title => "Add a comment" %>
+		  </span>
+	    </span>
+	  </div>
+	
+  <div id="message_<%= surfboard.id %>">
+  </div>
+  
+      <div class="comments">
+        <div id="comments_for_commentable_<%= surfboard.id %>">
+	    </div>
+	  
+	    <div id="new_comment_form_for_commentable_<%= surfboard.id %>">
+	    </div>
+      </div>	
+
+      <% if photo_size == "normal" %>
+	    <% unless surfboard.photos.empty? %>
+	      <div class="media">
+	        <div class="photos">
+	          <% surfboard.photos.each do |photo| %>
+		        <%= image_tag(photo.image.url("normal")) %>
+	          <% end %>
+		    </div>
+		  </div>
+	    <% end %>
+	  <% end %>
+  
+    <div class="spacer"></div>
+</div>
+</div>

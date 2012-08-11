@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= @title %></title>
+    <%= javascript_include_tag :defaults %>
+    <%= stylesheet_link_tag "site" %>
+    <%= stylesheet_link_tag "profile" %>
+    <%= stylesheet_link_tag "surfspot" %>
+    <%= stylesheet_link_tag "browser" %>
+    <%= stylesheet_link_tag "forms" %>
+    <%= stylesheet_link_tag "tabs" %>
+    <%= stylesheet_link_tag "boxes" %>
+    <%= raw GMap.header %>
+    <% if @map %>
+      <%= raw @map.to_html %>
+    <% end %>
+    <%= yield :head %>
+  </head>
+
+  <body>
+    <div id="wrapper">
+      <div id="header">
+        <div id="top">
+          <span id="branding">
+            <%= nav_link image_tag("surftrottr_logo_reflection.png"), "home", "index" %>
+    <%= image_tag("surftrottr_slogan.png") %>
+          </span>
+          <% if logged_in? -%>
+            <span class="account" id="logged_in">
+              <%= nav_link "Sign out", "account", "logout" %>
+              <%= nav_link "Settings", "account", "index" %>
+            </span>
+          <% else -%>
+            <span class="account" id="anonymous">
+              <%= nav_link "Sign in", "site", "index" %>
+              or
+              <%= nav_link "Register", "account", "register" %>
+              for extra features
+            </span>
+          <% end -%>
+          <div class="spacer"></div>
+        </div>
+        <div id="bottom">
+          <%= render :partial => "layouts/nav" %>
+          <%= render :partial => "layouts/search" %>
+
+          <div class="spacer"></div>
+        </div>
+      </div>
+
+      <div id="flash">
+        <%= render_flashes %>
+      </div>
+
+      <div id="content">
+        <%= yield %>
+      </div>
+
+      <div class="spacer"></div>
+
+      <div id="footer">
+        <p>
+          <span id="links">
+            <%= nav_link "FAQ", "site", "faq" %> <span class="separator">//</span>
+            <%= nav_link "About", "site", "about" %> <span class="separator">//</span>
+            <%= nav_link "Terms of Use", "site", "terms" %> <span class="separator">//</span>
+            <%= nav_link "Contact us", "site", "contact" %>
+          </span>
+          <span id="copyright">surftrottr (c) 2009</span>
+        </p>
+        <div class="spacer"></div>
+      </div>
+    </div>
+  </body>
+</html>

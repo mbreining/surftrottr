@@ -1,0 +1,3 @@
+page.hide "new_report"
+page.replace_html "new_report", :partial => "new"
+page.visual_effect :blind_down, "new_report"

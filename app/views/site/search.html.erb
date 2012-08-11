@@ -1,0 +1,27 @@
+<div class="layout2">
+
+  <div class="side_container">
+    <%= render :partial => "layouts/search" %>
+  </div>
+
+  <div class="main_container">
+	
+		<%= render :partial => "layouts/round_box_top" %>
+		
+		<div class="search_results">
+		  <h1>Results for '<%= params[:q] %>'</h1>
+		  		  
+		  <%= render :partial => "layouts/entry", :collection => @entries %>
+					
+		  <div class="spacer"></div>
+		</div>
+		
+		<div id="pagination">
+		    <%= will_paginate @entries %>
+		</div>
+			
+		<%= render :partial => "layouts/round_box_bottom" %>
+		
+  </div>
+  
+</div>

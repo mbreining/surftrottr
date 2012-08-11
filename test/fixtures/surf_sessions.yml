@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 1
+  surfspot_id: 1
+  rating: 1
+  surfboard: MyString
+  surf_conditions: MyString
+  wave_height: MyString
+  crowd_factor: MyString
+  actual_date: 2009-05-28 19:56:49
+
+two:
+  user_id: 1
+  surfspot_id: 1
+  rating: 1
+  surfboard: MyString
+  surf_conditions: MyString
+  wave_height: MyString
+  crowd_factor: MyString
+  actual_date: 2009-05-28 19:56:49

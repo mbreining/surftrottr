@@ -1,0 +1,184 @@
+<div class="entry_wrapper" id="visibility_<%= visibility(report) %>">
+<div class="entry" id="report_<%= report.id %>">
+  
+  <div class="body">
+  
+    <div class="side">
+      <div class="vote" id="vote_<%= report.id %>">
+	    <% if logged_in? and report.has_user_voted? current_user %>
+		  <%= render :partial => "reports/vote_off", :locals => { :report => report } %>
+		<% else %>
+		  <%= render :partial => "reports/vote_on", :locals => { :report => report } %>
+		<% end %>
+      </div>
+  
+      <% if not hide_surfer %>
+	    <div class="avatar">
+	      <% user = User.find(report.user_id) %>
+	      <%= link_to thumbnail_tag(user), surfer_url(user.screen_name) %>
+	    </div>
+      <% end %>
+	  
+	  <div class="spacer"></div>
+	</div>
+	
+	<div class="main" id="<%= layout %>">
+	  <div class="misc">
+	    <div class="actions">
+	      <% if photo_size == "thumb" %>
+		    <% surfspot = Surfspot.find_by_id(report.surfspot_id) %>
+		    <%= link_to "show", report_path(report.id) %>
+	      <% else %>
+	 	    <script type="text/javascript" src="http://w.sharethis.com/button/sharethis.js#publisher=d0183d25-49fa-486e-b8f1-5005ccf3f4c2&amp;type=website"></script>
+	      <% end %>
+	    </div>
+		
+		<div class="voted" id="voted_<%= report.id %>">
+		  <% if logged_in? %>
+		    <% if report.has_user_voted? current_user %>
+			  <%= render :partial => "reports/voted" %>
+			<% end %>
+		  <% end %>
+		</div>
+
+        <% if photo_size == "thumb" %>
+          <% unless report.photos.empty? %>
+            <div class="media">
+              <div class="photos">
+		        <% surfspot = Surfspot.find_by_id(report.surfspot_id) %>
+		        <%= link_to image_tag(report.photos.first.image.url("thumb")),
+			  	  	        report_path(report.id) %>
+              </div>
+            </div>
+          <% end %>
+	    <% end %>
+	  </div>
+	
+      <% if report.class.to_s == Report::STANDARD_REPORT %>
+	
+	    <div class="content">
+	  
+	      <% if not hide_surfspot %>
+	        <div class="surfspot">
+	          <% surfspot = Surfspot.find_by_id(report.surfspot_id) %>
+	          <%= link_to surfspot.full_name, surfspot_path(surfspot), :title => surfspot.full_name %>
+	        </div>
+	      <% end %>
+	
+	      <div class="text">
+            <% if report.advanced_only %>
+  	          <b style="color: red">WARNING: ROUGH CONDITIONS! BEGINNERS BEWARE!</b>
+	          <br />
+	        <% end %>
+            <b>Surf conditions </b><%= report.surf_conditions.upcase %>
+	        <br />
+            <b>Wave height </b><%= report.wave_height %>
+            <br />
+	        <% if !is_field_empty?(report.wind_direction) %>
+              <b>Wind direction </b><%= report.wind_direction %>
+              <br />
+	        <% end %>
+	        <% if !is_field_empty?(report.wind_speed) %>
+              <b>Wind speed </b><%= report.wind_speed %>
+              <br />
+	        <% end %>
+	        <% if !is_field_empty?(report.paddle_out) %>
+              <b>Paddle out </b><%= report.paddle_out %>
+              <br />
+	        <% end %>
+	        <% if !is_field_empty?(report.crowd_factor) %>
+              <b>Crowd factor </b><%= report.crowd_factor %>
+              <br />
+	        <% end %>
+	        <% if !is_field_empty?(report.text) %>
+              <b>Comments </b><%= sanitize(auto_link(report.text)) %>
+	        <% end %>
+	      </div>
+
+	    </div>
+	  
+	    <!-- Dummy div for IE6 bug -->
+	    <!-- http://www.brunildo.org/test/IE_raf3.html -->
+	    <div></div>
+	
+      <% elsif report.class.to_s == Report::TWITTER_REPORT %>
+	  
+        <div class="content">
+	
+	      <% if not hide_surfspot %>
+	        <div class="surfspot">
+		      <% surfspot = Surfspot.find_by_id(report.surfspot_id) %>
+	          <%= link_to surfspot.full_name, surfspot_path(surfspot), :title => surfspot.full_name %>
+		    </div>
+	      <% end %>
+		
+	      <div class="text">
+	        <% if !is_field_empty?(report.text) %>
+              <%= sanitize(auto_link(report.text.gsub(/\r?\n|\r/, '<br>'))) %>
+	        <% end %>
+	      </div>
+		
+	    </div>
+	  
+	    <!-- Dummy div for IE6 bug -->
+	    <!-- http://www.brunildo.org/test/IE_raf3.html -->
+	    <div></div>
+	  
+      <% end %>
+	</div>
+	
+	<div class="spacer"></div>
+  </div>
+	
+  <div class="footer">
+    <span class="creation_info">
+	  <% user = User.find(report.user_id) %>
+	  <span class="author">
+		Posted 
+		<% if not hide_surfer %>by <%= link_to user.screen_name, surfer_path(user.screen_name) %><% end %> 
+		<%= time_ago_in_words report.actual_created_at %> ago&nbsp;
+	  </span>
+	  <%= render :partial => "reports/source", :locals => { :report => report } %>
+	</span>
+	  
+	<span class="add_comment">
+	  <span id="icon">
+		<%= image_tag "icons/comments.png" %>
+	  </span>
+	  <span id="link">
+		<%= link_to report.comments.length == 0 ? "add a comment" : "comments(#{report.comments.count})", 
+							{ :url => { :controller => "comments", :action => "new", :report_id => report.id },
+                :method => :get, :remote => true },
+							:href => { :controller => "comments", :action => "new", :report_id => report.id },
+							:title => "Add a comment" %>
+	  </span>
+	</span>
+  </div>
+	
+  <div id="message_<%= report.id %>">
+  </div>
+	
+  <div class="comments">
+	<div id="comments_for_commentable_<%= report.id %>">
+	</div>
+	  
+	<div id="new_comment_form_for_commentable_<%= report.id %>">
+	</div>
+  </div>
+	
+  <% if photo_size == "normal" %>
+	<% unless report.photos.empty? %>
+	  <div class="media">
+	    <div class="photos">
+		  <% report.photos.each do |photo| %>
+		    <%= image_tag(photo.image.url("normal")) %>
+		  <% end %>
+	    </div>
+	  </div>
+	<% end %>
+  <% end %>
+	
+  <div class="spacer"></div>
+
+</div>
+</div>

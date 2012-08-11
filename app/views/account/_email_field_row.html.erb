@@ -1,0 +1,9 @@
+<label for="email">
+  Email
+  <span class="required_field">*</span>
+  <span class="description">Enter a valid email</span>
+</label> 
+<%= form.text_field :email, 
+                    :size => User::EMAIL_SIZE, 
+                    :maxlength => User::EMAIL_MAX_LENGTH,
+					:class => "text" %> 

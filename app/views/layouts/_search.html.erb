@@ -1,0 +1,7 @@
+<span id="search">
+  <%= form_tag({ :controller => "site", :action => "search" }, :method => "get") do %>
+    Search
+    <%= text_field_tag "q", params[:q], :class => "text" %>
+    <!-- %= image_submit_tag "/images/search/search_button.gif", :class => "search_button" % -->
+  <% end %>
+</span>

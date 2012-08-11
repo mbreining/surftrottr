@@ -1,0 +1,43 @@
+<div class="side_box">
+
+  <%= render :partial => "layouts/round_box_top" %>
+
+			  <h2>
+			    <span class="header">Surfboards</span>
+				
+				<div class="actions">
+			      <% unless hide_edit_links? %>
+				    <%= link_to "edit", surfboards_path, { :title => "Edit" } %>
+			      <% end %>
+				</div>
+				
+				<div class="spacer"></div>
+			  </h2>
+
+  <div class="contents">
+	<ul>
+		<% unless @surfboards.nil? || @surfboards.empty? %>
+	    	<% @surfboards.each do |surfboard| %>
+	      		<li>
+		    		<%= link_to truncate(surfboard.category + " - " + surfboard.length + " " + surfboard.brand, :length => 45), 
+					            surfboard_path(surfboard), 
+								:title => surfboard.length + " " + surfboard.brand %>
+					<% unless surfboard.photos.nil? || surfboard.photos.empty? %>
+					  <% if surfboard.photos.length == 1 %>
+					    <%= link_to image_tag("icons/picture.png"), surfboard_path(surfboard), :title => surfboard.length + " " + surfboard.brand %>
+					  <% else %>
+					    <%= link_to image_tag("icons/pictures.png"), surfboard_path(surfboard), :title => surfboard.length + " " + surfboard.brand %>
+					  <% end %>
+					<% end %>
+		  		</li>
+	    	<% end %>
+		<% else %>
+    		<li>None</li>
+		<% end %>
+		<div class="spacer"></div>
+	</ul>
+  </div>
+  
+  <%= render :partial => "layouts/round_box_bottom" %>
+
+</div>

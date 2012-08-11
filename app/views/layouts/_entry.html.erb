@@ -1,0 +1,11 @@
+<% if Report === entry %>
+  <%= render :partial => "reports/report", :collection => [entry], :locals => { :hide_surfer => false, :hide_surfspot => false, :photo_size => "thumb" } %>
+<% elsif SurfSession === entry %>
+  <%= render :partial => "surf_sessions/surf_session", :collection => [entry], :locals => { :hide_edit_links => true, :hide_surfer => false, :hide_surfspot => false, :media_size => "thumb" } %>
+<% elsif Post === entry %>
+  <%= render :partial => "posts/post", :collection => [entry], :locals => { :hide_edit_links => true, :hide_surfer => false, :hide_comments => false, :media_size => "thumb" } %>
+<% elsif Surfboard === entry %>
+  <%= render :partial => "surfboards/surfboard", :collection => [entry], :locals => { :hide_edit_links => true, :photo_size => "thumb" } %>
+<% elsif Gear === entry %>
+  <%= render :partial => "gears/gear", :collection => [entry], :locals => { :hide_edit_links => true, :photo_size => "thumb" } %>
+<% end %>

@@ -1,0 +1,144 @@
+<div class="event" id="event_<%= event.id %>">
+
+  <div class="abstract">
+    <% case event.class.to_s 
+       when "AccountEvent" %>
+	    <%= image_tag "icons/key.png" %>
+	    Updated account information
+    <% when "AvatarEvent" %>
+	  <%= image_tag "icons/avatar.png" %>
+      <% if event.action == AvatarEvent:: PICTURE_UPLOADED %>
+  	    Uploaded a profile picture
+	  <% elsif event.action == AvatarEvent::PICTURE_DELETED %>
+	    Deleted profile picture
+	  <% end %>
+    <% when "FavoriteEvent" %>
+	  <%= image_tag "icons/star_on.png" %>
+      <% surfspot = Surfspot.find(event.surfspot_id) %>
+      <% if event.action == FavoriteEvent::FAVORITE_SURFSPOT_ADDED %>
+	    Added <%= link_to surfspot.full_name, :controller => "surfspots", :action => "show" , :id => surfspot.id %> to profile
+	  <% elsif event.action == FavoriteEvent::FAVORITE_SURFSPOT_DELETED %>
+	    Removed <%= link_to surfspot.full_name, :controller => "surfspots", :action => "show" , :id => surfspot.id %> from profile
+	  <% end %>
+    <% when "UserInformationEvent" %>
+	  <%= image_tag "icons/info.png" %>
+      Updated personal information
+    <% when "ThirdpartyAccountEvent" %>
+	  <%= image_tag "icons/twitter.png" %>
+	  <% account = ThirdpartyAccount.find(event.thirdparty_account_id) %>
+      <% if event.action == ThirdpartyAccountEvent::TWITTER_ACCOUNT_ADDED %>
+	    Added <%= link_to account.src_screen_name, "http://www.twitter.com/#{account.src_screen_name}" %> as a Twitter account
+	  <% elsif event.action == ThirdpartyAccountEvent::TWITTER_ACCOUNT_DELETED %>
+	    Removed <%= link_to account.src_screen_name, "http://www.twitter.com/#{account.src_screen_name}" %> as a Twitter account
+	  <% end %>
+    <% when "ReportEvent" %>
+      <% surfspot = Surfspot.find(event.surfspot_id) %>
+      <% if event.action == ReportEvent::STANDARD_REPORT_POSTED %>
+	    <% report = Report.find_by_id(event.report_id) %>
+	    <% if report.photos.empty? %>
+	      <%= image_tag "icons/report.png" %>
+		<% else %>
+		  <%= image_tag "icons/report.png" %>
+		<% end %>
+		Posted a new <%= link_to "report", report_path(event.report_id) %> for <%= link_to surfspot.full_name, :controller => "surfspots", :action => "show" , :id => surfspot.id %>
+	  <% elsif event.action == ReportEvent::TWITTER_REPORT_POSTED %>
+	    <%= image_tag "icons/report.png" %>
+        Tweeted a new <%= link_to "report", report_path(event.report_id) %> for <%= link_to surfspot.full_name, :controller => "surfspots", :action => "show" , :id => surfspot.id %>
+      <% elsif event.action == ReportEvent::REPORT_VOTED_UP %>
+	    <%= image_tag "icons/vote_yes.png" %>
+	    Voted a <%= link_to "report", report_path(event.report_id) %> up
+	  <% elsif event.action == ReportEvent::REPORT_VOTED_DOWN %>
+	    <%= image_tag "icons/vote_no.png" %>
+	    Voted a <%= link_to "report", report_path(event.report_id) %> down
+	  <% end %>
+    <% when "SurfSessionEvent" %>
+	  <% if event.action == SurfSessionEvent::SURF_SESSION_DELETED %>
+	    <%= image_tag "icons/surf_session.png" %>
+		Removed a surf session
+	  <% else %>
+	    <% surf_session = SurfSession.find(event.surf_session_id) %>
+	    <% if surf_session.photos.empty? %>
+	      <%= image_tag "icons/surf_session.png" %>
+	    <% else %>
+	      <%= image_tag "icons/surf_session.png" %>
+	    <% end %>
+	    <% if event.surfspot_id %>
+		  <% surfspot = Surfspot.find(event.surfspot_id) %>
+		  <% if event.action == SurfSessionEvent::SURF_SESSION_ADDED %>
+	        Added a new <%= link_to "surf session", :controller => "surf_sessions", :action => "show" , :id => event.surf_session_id %> for <%= link_to surfspot.full_name, :controller => "surfspots", :action => "show" , :id => surfspot.id %>
+          <% elsif event.action == SurfSessionEvent::SURF_SESSION_EDITED %>
+		    Edited a <%= link_to "surf session", :controller => "surf_sessions", :action => "show" , :id => event.surf_session_id %> for <%= link_to surfspot.full_name, :controller => "surfspots", :action => "show" , :id => surfspot.id %>
+		  <% end %>
+		<% else %>
+		  <% if event.action == SurfSessionEvent::SURF_SESSION_ADDED %>
+	        Added a new <%= link_to "surf session", :controller => "surf_sessions", :action => "show" , :id => event.surf_session_id %>
+          <% elsif event.action == SurfSessionEvent::SURF_SESSION_EDITED %>
+		    Edited a <%= link_to "surf session", :controller => "surf_sessions", :action => "show" , :id => event.surf_session_id %>
+		  <% end %>		
+		<% end %>
+	  <% end %>
+	<% when "FriendshipEvent" %>
+      <% friend = User.find(event.friend_id) %>
+      <% if event.action == FriendshipEvent::FRIEND_ADDED %>
+	    <%= image_tag "icons/friend.png" %>
+	    Added <%= link_to friend.screen_name, surfer_path(friend.screen_name) %> as a surf buddy
+	  <% elsif event.action == FriendshipEvent::FRIEND_DELETED %>
+	    <%= image_tag "icons/friend.png" %>
+	    Removed <%= link_to friend.screen_name, surfer_path(friend.screen_name) %> from list of surf buddies
+	  <% end %>
+    <% when "CommentEvent" %>
+      <% if event.action == CommentEvent::COMMENT_ADDED %>
+	    <% comment = Comment.find(event.comment_id) %>
+		<% user = User.find(comment.commentable.user_id) %>
+		<%= image_tag "icons/comment.png" %>
+		Added a new comment to a <%= link_to comment.commentable_type.underscore.humanize.downcase, :controller => "comments", :action => "show" , :id => event.comment_id %>
+	  <% end %>
+    <% when "GearEvent" %>
+	  <%= image_tag "icons/gear.png" %>
+      <% if event.action == GearEvent::GEAR_ADDED %>
+	    <% gear = Gear.find(event.gear_id) %>
+		Added a new <%= link_to "surfing gear", gear_path(gear) %>
+      <% elsif event.action == GearEvent::GEAR_EDITED %>
+	    <% gear = Gear.find(event.gear_id) %>
+	    Edited a <%= link_to "surfing gear", gear_path(gear) %>
+      <% elsif event.action == GearEvent::GEAR_DELETED %>
+	    Removed a surfing gear
+	  <% end %>
+    <% when "SurfboardEvent" %>
+	  <%= image_tag "icons/surfboard.png" %>
+      <% if event.action == SurfboardEvent::SURFBOARD_ADDED %>
+	    <% surfboard = Surfboard.find(event.surfboard_id) %>
+		Added a new <%= link_to "surfboard", surfboard_path(surfboard) %>
+      <% elsif event.action == SurfboardEvent::SURFBOARD_EDITED %>
+	    <% surfboard = Surfboard.find(event.surfboard_id) %>
+	    Edited a <%= link_to "surfboard", surfboard_path(surfboard) %>
+      <% elsif event.action == SurfboardEvent::SURFBOARD_DELETED %>
+	    Removed a surfboard
+	  <% end %>
+    <% when "PostEvent" %>
+	  <%= image_tag "icons/post.png" %>
+      <% if event.action == PostEvent::POST_ADDED %>
+	    <% post = Post.find(event.post_id) %>
+		Added a new <%= link_to "bulletin", post_path(post) %>
+      <% elsif event.action == PostEvent::POST_EDITED %>
+	    <% post = Post.find(event.post_id) %>
+	    Edited a <%= link_to "bulletin", post_path(post) %>
+      <% elsif event.action == PostEvent::POST_DELETED %>
+	    Removed a bulletin
+	  <% end %>
+    <% end %>
+  
+    <span class="creation_info">
+      <%= time_ago_in_words event.created_at %> ago from web
+    </span>
+  </div>
+	
+  <div class="actions">
+    <% unless hide_edit_links? %>
+	  <%= link_to "delete", :url => { :controller => "event", :action => "delete", :id => event.id },
+      :method => :get, :remote => true %>
+	<% end %>
+  </div>
+  
+  <div class="spacer"></div>
+</div>

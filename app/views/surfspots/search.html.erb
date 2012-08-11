@@ -1,0 +1,51 @@
+<div class="layout1">
+  <div class="main_container">
+
+    <div class="mytab">
+      <ul class="tabs">
+        <li><%= link_to "All", :controller => 'surfspots', :action => 'index' %></li>
+        <li><%= link_to "Browse by state and city", :controller => 'surfspots', :action => 'browse' %></li>
+	    <li><%= link_to "Search", { :controller => 'surfspots', :action => 'search' }, :class => 'active' %></li>
+      </ul>
+
+      <div class="tabs_content">
+      
+        <div class="section">
+	      <%= form_tag({ :action => "search" }, :method => "get") do %>
+		    <label for="q">Search for a surfspot name, city, state or Twitter tag</label>
+		    <%= text_field_tag "q", params[:q], :class => "text" %>
+		    <input type="submit" value="Search" class="submit" />
+			<!-- div class="label">Search for a surfspot name, city, state or Twitter tag</div -->
+		  <% end %>
+		</div>
+		
+        <div class="section">
+		  <div id="results">
+					<ul>
+					    <% if not @surfspots.nil? %>
+						  <% if @surfspots.length != 0 %>
+						    <li class="entry"><b><%= @surfspots.length %> result(s)</b></li>
+                            <% @surfspots.each do |spot| %>
+                                <li class="entry">
+								    <%= link_to spot.full_name, 
+											    surfspot_path(spot),
+												:title => spot.full_name %>
+								</li>
+                            <% end %>
+						  <% else %>
+    		                <li>We couldn't find any record matching your query.</li>
+		                  <% end %>
+						<% end %>
+						<div class="spacer"></div>
+					</ul>
+			
+		  </div>
+
+		</div>
+	  
+	    <div class="spacer"></div>
+      </div>
+	</div>
+
+  </div>
+</div>

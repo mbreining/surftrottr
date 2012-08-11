@@ -1,0 +1,33 @@
+<div class="side_box">
+
+  <%= render :partial => "layouts/round_box_top" %>
+	
+				<h2>
+				  <span class="header">Surfers</span>
+				  <div class="spacer"></div>
+				</h2>
+  
+				<div class="contents">
+				  <div id="mosaic">
+					<ul>
+						<% if @surfspot.favorites.length != 0 %>
+                            <% @surfspot.favorites.each do |surfer| %>
+							  <li class="friend">
+                                <span id="thumbnail">
+		                          <%= link_to mini_thumbnail_tag(surfer.user), surfer_path(surfer.user.screen_name), :title => surfer.user.screen_name %>
+								</span>
+							  </li>
+                            <% end %>
+						<% else %>
+    		                <li>None</li>
+		                <% end %>
+						<div class="spacer"></div>
+					</ul>
+					<div class="spacer"></div>
+				  </div>
+				</div>
+		  	<div class="spacer"></div>
+	
+  <%= render :partial => "layouts/round_box_bottom" %>
+  
+</div>

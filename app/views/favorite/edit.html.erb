@@ -1,0 +1,23 @@
+<div class="layout1">
+  <div class="main_container">
+	
+  	<div class="myform">
+	  <h1>Your current favorite surfspots</h1>
+	  <p class="description">Use this form to remove surfspots from your list of favorites</p>
+
+      <% unless @user.surfspots.empty? %>
+        <ul>
+	      <% @user.surfspots.each do |surfspot| %>
+	        <li><%= "#{surfspot.full_name}" %></li>
+	        <li class="action"><%= link_to "remove", { :controller => "favorite", :action => "delete", :id => "#{surfspot.id}" }, { :title => "Remove" } %></li>
+	      <% end %>
+	    </ul>
+	  <% else %>
+	    None
+	  <% end %>   
+		
+      <div class="spacer"></div>
+	</div>
+
+  </div>
+</div>

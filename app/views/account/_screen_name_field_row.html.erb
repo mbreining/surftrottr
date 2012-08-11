@@ -1,0 +1,10 @@
+<% field_title = nil if not defined?(field_title) -%>
+<label for="<%= field %>">
+  <%= field_title || field.humanize %>
+  <span class="required_field">*</span>
+  <span class="description">Your Surftrottr username</span>
+</label>
+<%= form.text_field :screen_name, 
+                    :size => User::SCREEN_NAME_SIZE, 
+                    :maxlength => User::SCREEN_NAME_MAX_LENGTH,
+					:class => "text" %> 

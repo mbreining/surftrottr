@@ -1,0 +1,46 @@
+<div class="layout1">
+  <div class="main_container">
+
+    <%= render "shared/error_messages", :target => @thirdparty_account %>
+
+	<div class="myform">
+      <%= form_for :thirdparty_account do |form| %> 
+		<h1>Manage your Twitter accounts</h1>
+		<p class="description">Use this form to add or delete a Twitter account</p>
+		
+		<fieldset>
+		  <h2>Your current Twitter account(s):</h2>
+		  <% if @accounts.length != 0 %>
+            <ul>
+		      <%= @accounts.each do |account| %>
+		        <li>
+		          <%= link_to account.src_screen_name, "http://www.twitter.com/#{account.src_screen_name}" %>
+                </li>
+			    <li class="action">
+			      <%= link_to "remove", :controller => "thirdparty_account", :action => "delete", :id => account.id %>
+			    </li>
+			  <% end %>
+		    </ul>
+		  <% else %>
+		    None
+		  <% end %>
+		  <div class="spacer"></div>
+		</fieldset>
+
+        <div class="hard_separator"></div>
+
+        <fieldset>
+		  <div class="row">
+            <%= text_field_for_form form, "src_screen_name", "Enter a valid Twitter username", "Add a Twitter account" %>
+		    <div class="spacer"></div>
+		  </div>
+		  
+		  <%= submit_tag "Add", :class => "submit" %> 
+		  <div class="spacer"></div>
+		</fieldset>
+		
+      <% end %>
+	</div>
+
+  </div>
+</div>

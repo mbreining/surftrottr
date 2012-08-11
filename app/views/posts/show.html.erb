@@ -1,0 +1,9 @@
+<div class="layout1">
+  <div class="main_container">
+
+    <%= render "layouts/rnd_box_top", :name => "white_on_sky" %>
+      <%= render :partial => "posts/post", :collection => [ @post ], :locals => { :layout => "w_avatar", :hide_edit_links => @hide_edit_links, :hide_surfer => false, :hide_comments => false, :media_size => "normal" } %>
+    <%= render "layouts/rnd_box_bottom", :name => "white_on_sky" %>
+
+  </div>
+</div>

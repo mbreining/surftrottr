@@ -1,0 +1,96 @@
+<div class="entry_wrapper" id="visibility_neutral">
+<div class="entry" id="gear_<%= gear.id %>">
+
+      <div class="avatar">
+	      <% user = User.find(gear.user_id) %>
+	      <%= link_to thumbnail_tag(user), surfer_url(user.screen_name) %>
+	  </div>
+
+  <div class="body" id="w_avatar">
+
+	<% if photo_size == "thumb" %>
+	  <% unless gear.photos.empty? %>
+	      <div class="media">
+	        <div class="photos">
+			  <%= link_to image_tag(gear.photos.first.image.url("thumb")),
+						  gear_path(gear) %>
+	        </div>
+	      </div>
+	  <% end %>
+	<% else %>
+	  <div class="actions">
+	    <script type="text/javascript" src="http://w.sharethis.com/button/sharethis.js#publisher=d0183d25-49fa-486e-b8f1-5005ccf3f4c2&amp;type=website"></script>
+        <% unless hide_edit_links %>
+	      <%= link_to 'edit', edit_gear_path(gear) %>
+		  <%= link_to 'remove', gear_path(gear), :method => "delete", :confirm => 'Are you sure you want to remove this gear', :title => "Remove" %>
+		<% end %>
+	  </div>
+	<% end %>
+	
+	  <div class="content">
+	  <div class="text">
+	    <ul>
+		  <li id="name">
+		    <%= sanitize(gear.category + " - " + gear.brand + " " + gear.name) %>
+		  </li>
+	      <% if !is_field_empty?(gear.description) %>
+		    <li>
+              <%= sanitize(auto_link(gear.description)) %>
+            </li>
+	      <% end %>
+	      <% if !is_field_empty?(gear.link) %>
+		    <li id="link">
+              <b>Link </b><%= sanitize(auto_link(gear.link)) %>
+            </li>
+		  <% end %>
+	  </div>
+	  </div>
+  </div>
+	  
+	  <div class="footer">
+	    <span class="creation_info">
+	      <% user = User.find(gear.user_id) %>
+	      Added by <%= link_to user.screen_name, surfer_path(user.screen_name) %>
+          <%= time_ago_in_words gear.created_at %> ago
+	    </span>
+	  
+	    <span class="add_comment">
+		  <span id="icon">
+		    <%= image_tag "icons/comments.png" %>
+		  </span>
+		  <span id="link">
+		    <%= link_to gear.comments.empty? ? "add a comment" : "comments(#{gear.comments.count})", 
+		                       { :url => { :controller => "comments", :action => "new", :gear_id => gear.id },
+                             :method => :get, :remote => true },
+							   :href => { :controller => "comments", :action => "new", :gear_id => gear.id },
+                 :title => "Add a comment" %>
+		  </span>
+	    </span>
+	  </div>
+		
+  <div id="message_<%= gear.id %>">
+  </div>
+  
+      <div class="comments">
+        <div id="comments_for_commentable_<%= gear.id %>">
+	    </div>
+	  
+	    <div id="new_comment_form_for_commentable_<%= gear.id %>">
+	    </div>
+      </div>	
+
+      <% if photo_size == "normal" %>
+	    <% unless gear.photos.empty? %>
+	      <div class="media">
+	        <div class="photos">
+	          <% gear.photos.each do |photo| %>
+		        <%= image_tag(photo.image.url("normal")) %>
+	          <% end %>
+		    </div>
+		  </div>
+	    <% end %>
+      <% end %>
+  
+    <div class="spacer"></div>
+</div>
+</div>

@@ -1,0 +1,11 @@
+<div class="layout1">
+  <div class="main_container">
+
+    <%= render :partial => "layouts/rnd_box_top", :locals => { :name => "white_on_sky" } %>
+    	<%= render :partial => "reports/report", :collection => [ @report ], :locals => { :layout => "w_avatar_w_rating", :hide_surfer => false, :hide_surfspot => false, :photo_size => "normal" } %>
+	<%= render :partial => "layouts/rnd_box_bottom", :locals => { :name => "white_on_sky" } %>
+
+  </div>
+</div>
+
+

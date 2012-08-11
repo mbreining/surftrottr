@@ -1,0 +1,16 @@
+<div id="comment_<%= comment.id %>" class="comment">
+  <span class="thumbnail">
+    <%= link_to mini_thumbnail_tag(comment.user), surfer_path(comment.user.screen_name) %>
+  </span>
+  <p>
+    <span id="prefix">
+      <%= link_to comment.user.screen_name, surfer_path(comment.user.screen_name) %>
+      said:
+	</span>
+    <%= sanitize(auto_link(comment.body)) %>
+	<span id="creation_info">
+      <%= time_ago_in_words comment.created_at %> ago
+	</span>
+  </p>
+  <div class="spacer"></div>
+</div>

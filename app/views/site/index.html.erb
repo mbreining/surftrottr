@@ -1,0 +1,30 @@
+<div id="welcome_content">
+
+  <%= render_flashes %>
+
+  <div id="banner">
+	<span id="reminder">
+	  <%= link_to "Forgot your password?", :controller => "email", :action => "remind" %>
+	</span>
+	<span id="register">
+	  Not a member? <%= link_to "Join now!", :controller => "account", :action => "register" %>
+    </span>
+    <div class="spacer"></div>
+  </div>
+
+  <div id="photo_link">
+   <%= image_tag "icons/cc_small.png" %>
+   <%= link_to "Photo: Jack Mora", "http://flickr.com/photos/jackmora/2629976383/" %>
+  </div>
+  
+  <div id="abstract">
+  <b>Welcome to Surftrottr,</b> an online service for sharing surf reports.
+  <br/>
+  <br/>
+  Nothing beats a simple real-time surf report. So there you go. No unreliable wave forecasts, no cryptic oceanographic data, no blurry web cams, no fees, just simple real-time surf reports powered by the surfing community.
+  <br/>
+  <br/>
+  <%= link_to "Learn more", :controller => "site", :action => "faq" %> about our service and <%= link_to "create an account", :controller => "account", :action => "register" %> now.
+  </div>
+  
+</div>

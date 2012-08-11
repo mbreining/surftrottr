@@ -1,0 +1,29 @@
+<div class="side_box">
+		
+  <%= render :partial => "layouts/round_box_top" %>
+	
+				<h2>
+				  <span class="header">Top surf session contributors</span>
+				  <div class="spacer"></div>
+				</h2>
+
+				<div class="contents">
+                  <div id="mosaic">
+                    <ul>
+                      <% unless @top_loggers.empty? %>
+                        <% @top_loggers.first(7).each do |logger| %>
+                          <li>
+                            <span id="thumbnail">
+							  <%= link_to mini_thumbnail_tag(logger), surfer_path(logger.screen_name), :title => "#{logger.screen_name} (#{logger.surf_sessions.length})" %>
+		                    </span>
+	                      </li>
+                        <% end %>
+                      <% end %>
+                      <div class="spacer"></div>
+					</ul>
+	              </div>
+				</div>
+				
+  <%= render :partial => "layouts/round_box_bottom" %>
+  
+</div>

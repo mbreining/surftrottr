@@ -1,0 +1,40 @@
+<div class="layout1">
+  <div class="main_container">
+	
+	<div class="mytab">
+      <ul class="tabs">
+        <li><%= link_to "Account", :controller => 'account', :action => 'index' %></li>
+        <li><%= link_to "Twitter", { :controller => 'thirdparty_account', :action => 'index' }, :class => 'active' %></li>
+      </ul>
+	
+	  <div class="tabs_content">
+		
+		<ul class="actions">
+		  <li class="action">
+			<%= link_to "edit", :controller => 'thirdparty_account', :action => 'edit' %>
+		  </li>
+		</ul>
+		
+	    <div class="section">
+          <h2>Your Twitter account(s):</h2>
+          <% if @accounts.length != 0 %>
+		    <ul>
+		      <% @accounts.each do |account| %>
+	            <li class="entry">
+		          <%= image_tag account.src_avatar_url %>
+		          <%= link_to account.src_screen_name, "http://www.twitter.com/#{account.src_screen_name}" %>
+		        </li>
+		      <% end %>
+		    </ul>
+		  <% else %>
+		    None
+		  <% end %>
+
+		  <div class="spacer"></div>
+        </div>
+
+	  </div>
+	</div>
+
+  </div>
+</div>

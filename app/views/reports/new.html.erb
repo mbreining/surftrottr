@@ -1,0 +1,128 @@
+<div class="layout1">
+  <div class="main_container">
+
+    <%= render "shared/error_messages", :target => @report %>
+
+    <div class="myform">
+      <%= form_for @report, :url => reports_path, :html => { :multipart => true } do |report_form| %> 
+
+        <h1>Post a surf report</h1>
+		<p class="description">Use this form to post a surf report</p>
+
+		<div class="legend">
+		  <span id="meaning">required field</span><span id="symbol">*</span>
+		  <div class="spacer"></div>
+		</div>
+		
+        <div class="row">
+          <label>
+		    Surfspot
+			<span class="required_field">*</span>
+			<span class="description">Where?</span>
+		  </label>
+		  <% if @surfspot %>
+		    <%= report_form.select :surfspot_id, @surfspots.collect { |s| [ s.full_name, s.id ] }, options = { :selected => @surfspot.id } %>
+		  <% else %>
+		    <%= report_form.select :surfspot_id, @surfspots.collect { |s| [ s.full_name, s.id ] } %>		  
+		  <% end %>
+	      <div class="spacer"></div>
+		</div>
+		
+        <div class="row">
+          <label>
+		    Surf conditions
+			<span class="required_field">*</span>
+			<span class="description">How is the surf overall?</span>
+		  </label>
+		  <%= report_form.select :surf_conditions, StandardReport::VALID_SURF_CONDITIONS %>
+	      <div class="spacer"></div>
+		</div>
+		
+		<div class="row">
+		  <label>
+		    Wave height
+			<span class="required_field">*</span>
+			<span class="description">Use a surfer in the water as a reference</span>
+		  </label>
+	      <%= report_form.select :wave_height, StandardReport::VALID_WAVE_HEIGHT %>
+		  <div class="spacer"></div>
+		</div>  
+		
+		<div class="row">
+		  <label>
+		    Wind direction
+			<span class="description">Don't bother if you don't know</span>
+		  </label>
+	      <%= report_form.select :wind_direction, StandardReport::VALID_WIND_DIRECTION, options = {:selected => ""} %>
+		  <div class="spacer"></div>
+		</div>
+		
+		<div class="row">
+		  <label>
+		    Wind speed
+			<span class="description">Don't bother if you don't know</span>
+		  </label>
+	      <%= report_form.select :wind_speed, StandardReport::VALID_WIND_SPEED, options = {:selected => ""} %>
+		  <div class="spacer"></div>
+		</div>
+		  
+		<div class="row">
+		  <label>
+		    Paddle out
+			<span class="description">Is it tough to paddle out?</span>
+		  </label> 
+	      <%= report_form.select :paddle_out, StandardReport::VALID_PADDLE_OUT, options = {:selected => ""} %>
+		  <div class="spacer"></div>
+		</div>
+		
+		<div class="row">
+		  <label>
+		    Crowd factor
+			<span class="description">Is it crowded?</span>
+		  </label>
+	      <%= report_form.select :crowd_factor, StandardReport::VALID_CROWD_FACTOR, options = {:selected => ""} %>
+          <div class="spacer"></div>
+		</div>
+		
+        <div class="row">
+		  <label>
+		    Experts only?
+		    <span class="description">Is it dangerous out there?</span>
+		  </label>
+		  <%= report_form.radio_button :advanced_only, true, :class => "radio" %><span>Yes</span>
+		  <%= report_form.radio_button :advanced_only, false, :class => "radio" %><span>No</span>
+		  <div class="spacer"></div>
+		</div>
+		
+		<div class="row">
+		  <label>
+		    Comments
+		    <span class="description">Weather, ºF, warnings, "big fish" sighting, etc (255 chars max)</span>
+		  </label>
+	      <%= report_form.text_area :text, :rows => 5, :cols => 20 %>
+		  <div class="spacer"></div>
+		</div>
+	
+        <div class="row">
+		  <div id="photos">
+		     <%= report_form.fields_for :photos do |photo_form| %>
+				<p class="photo">
+			  		<label for="photo_image">
+			    		Photo
+						<span class="description">Select a picture to upload</span>
+			  		</label>
+			  		<%= photo_form.file_field :image, :size => 10, :class => "file" %>
+				</p>
+			 <% end %>
+		  </div>
+		  <div class="spacer"></div>
+		</div>
+		
+	    <%= submit_tag "Post", :class => "submit" %>
+	    <div class="spacer"></div>
+
+    <% end %>
+	</div>
+
+  </div>
+</div>

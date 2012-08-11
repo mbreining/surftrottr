@@ -1,0 +1,21 @@
+<div class="layout1">
+  <div class="main_container">
+	
+  	<div class="myform">
+	  <h1>Manage your surf buddies</h1>
+	  <p class="description">Use this form to accept/reject/delete surf buddies</p>
+
+      <h2><%= @user.friends.count %> surf buddies</h2>
+      <%= render :partial => "friendship/friends", :locals => { :hide_text => false } %>  
+	  
+	  <h2><%= @user.requested_friends.count %> requested surf buddies</h2>
+	  <%= render :partial => "friendship/requested_friends" %>
+	  
+	  <h2><%= @user.pending_friends.count %> pending surf buddies</h2>
+	  <%= render :partial => "friendship/pending_friends" %>
+	  
+      <div class="spacer"></div>
+	</div>
+
+  </div>
+</div>

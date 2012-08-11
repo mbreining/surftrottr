@@ -1,0 +1,214 @@
+<div class="layout2">
+	<div class="main_container">
+		
+		<div class="main_box">
+		<%= render :partial => "layouts/rnd_box_top", :locals => { :name => "white_on_sky" } %>
+			
+			<h1>Frequently asked questions</h1>
+			<h2>General</h2>
+			<h3 id="q01">What is Surftrottr?</h3>
+			<p>
+				At its core, Surftrottr is <span class="highlite">an online platform for surfers to share simple and real-time surf reports.</span> 
+				It helps fill the gap between surf forecasts and actual surf conditions.
+				Plan your surf sessions ahead with <%= link_to "your favorite surf forecaster", "http://www.google.com/search?q=surf+forecast", :target => "_blank" %> but when you're ready to go, check out the latest surf reports on Surftrottr so you know exactly what to expect and which spot to go to.
+				<br/><br/>
+				Surftrottr is also <span class="highlite">an online community of surfers where all things about surf are shared.</span>
+				You can create your own surfer profile, connect with other surfers, post bulletins (anything related to surf that you want to share, e.g. article, photos, videos, surf plans, etc...), log your surf sessions and more.
+			</p>			 
+			
+			<h3 id="q02">Is it free?</h3>
+			<p>
+				Yes.
+			</p>
+			
+			<h2>Surf reports</h2>
+			<h3 id="q20">How does it work?</h3>
+			<p>
+				It's very simple. Whenever you get a chance, post a surf report. It's free and only takes a minute or so. 
+				You can do this just before/after going in/out of the water. Your surf report will greatly benefit other members of the surfing community.
+				In return, when you want to get an idea of the current surf conditions, login to Surftrottr and check out the latest surf reports in your area. It's a win-win.
+			</p>
+			
+			<h3 id="q21">Why would I want to advertise my local surfspot?</h3>
+			<p>
+				Unless your local surfspot is blessed with perfect waves all year round, you'll need some help from the community once in a while to figure out the surf quality in your area.
+				<span class="highlite">It's a give and take though but we strongly believe that there is a lot more to gain by sharing with the rest of the community.</span> For example:
+				<br/><br/>
+				You'll save time and gas money by having an instant snapshot of the conditions of all your local surfspots as you prepare to go down to the beach. No more endless driving along the coast.
+				<br/><br/>
+				You'll also most likely discover new surfspots around your area you kinda knew existed but never took the time to explore. Having a positive surf report in hand of that unfamiliar surfspot would certainly help before checking it out for the first time.
+				<br/><br/>
+				These are just a few examples but at the very least, you'll stay connected with your local surfing community and of course you'll be spreading good karma. :) After all, surfing is about sharing, it's about the aloha spirit.
+			</p>
+			
+			<h3 id="q22">How do I post a surf report?</h3>
+			<p>
+				There are currently two ways to post a surf report: either directly <%= link_to "from Surftrottr", :anchor => "q5" %> or <%= link_to "using Twitter", :anchor => "q7" %>.
+			</p>
+			
+			<h3 id="q23">How do I post a report from Surftrottr?</h3>
+			<p>
+				<ul>
+					<li>Login to surftrottr.com.</li>
+					<li>Using the surfspots browsing functionality from the main navigation menu or simply using your list of favorite surfspots in your profile, go to the page of the surfspot you want to post a report for.</li>
+					<li>From there you can either post a standard report or post a report with a picture attached to it.</li>
+				</ul>
+			</p>
+			
+			<h3 id="q24">How do I "tweet" a surf report?</h3>
+			<p>
+				<ul>
+					<li>You first need to <%= link_to "register your Twitter account", :anchor => "q8" %> on Surftrottr.</li>
+					<li>
+						Using your favorite <%= link_to "Twitter client", "http://twitter.com/downloads" %>, send a @replies tweet to '@surftrottr' and tag it with the appropriate surfspot keyword. Every surfspot is assigned a unique tag (e.g. '#lindamar', '#sloat'), which you can find on the page of each surfspot in Surftrottr.
+						For example, the following tweet will post a new report for Linda Mar in Pacifica, CA:
+						<br/><br/>
+						<div class="box">
+				          <b>@surftrottr</b> 3-4 ft with FAIR conditions, lots of workable corners <b>#lindamar</b>
+				        </div>
+						<br/><br/>
+						Make sure you do specify both '@surftrottr' and the surfspot tag (e.g. #lindamar) otherwise your report will not appear on Surftrottr.
+                        Also remember that Twitter messages are limited to 140 characters.
+					</li>
+				</ul>
+			</p>
+			
+			<h3 id="q25">How do I register my Twitter account on Surftrottr?</h3>
+			<p>
+				<ul>
+					<li>If you don't have a Twitter account, go <%= link_to "open one", "http://www.twitter.com" %> now.</li>
+					<li>Login to surftrottr.com and add your Twitter account to your Surftrottr account: 'Settings' > 'Twitter' > 'edit'.</li>
+					<li>That's it. You can now <%= link_to "post reports using Twitter", :anchor => "q7" %>.</li>
+				</ul>
+			</p>
+			</h3>
+			
+			<h3 id="q26">Can I view and post reports for any surfspot?</h3>
+			<p>
+				No. We currently only cover popular surfspots in the San Francisco, CA area. More surfspots are added regularly but always feel free to <%= link_to "suggest a particular surfspot", :controller => "surfspots", :action => "suggest" %>.
+			</p>
+			
+			<h3 id="q27">How do I write a surf report?</h3>
+			<p>
+				Writing quality surf reports is not an easy task. It requires a certain amount of knowledge and experience.
+				That said, you don't need to be a veteran surfer nor an oceanographer to write a surf report that can benefit the community.
+				Here is one advice with which you can't go wrong: <span class="highlite">keep it simple and merely describe what you see in basic terms.</span>
+				Seriously... leave the complexity of oceanographic and wind data to surf forecast websites. Simple is better here.  
+				<br/><br/>
+				As an example, here is what you could briefly describe in a report:
+				<ul>
+				  <li>How big or small are the waves? Use a surfer in the water as a reference to gauge (chest high, head high, over-head, ...).</li>
+				  <li>Are they closing out? Obviously that's not something surfers are after so that piece of information alone could make a good surf report...</li>
+				  <li>How is the wind? Offshore? Onshore? Usually offshore wind is better and produces more glassy waves...</li>
+				  <li>Are there a lot of surfers in the water? Are they catching a lot of (good) rides?</li>
+				  <li>Does it look rough out there? That's also something people might be interested in, especially people just starting out...</li>
+				</ul>
+			</p>
+			</h3>
+			
+			<h2>Reputation</h2>
+			<h3 id="q40">What is reputation?</h3>
+			<p>
+				Reputation is <span class="highlite">a measurement of how much the Surftrottr community trusts you.</span>
+				Reputation is earned over time by posting quality surf reports.
+				The more you contribute and the more your surf reports are valued by other members, the more your reputation increases.
+			</p>
+			
+			<h3 id="q41">How exactly does it work?</h3>
+			<p>
+				You get:
+				<ul style="list-style:none">
+				  <li><span class="highlite"><b>+2</b></span> points per surf report that you post</li>
+				  <li><span class="highlite"><b>+10</b></span> points whenever your report is voted up by other members</li>
+				  <li><span class="highlite"><b>-2</b></span> points whenever your report is voted down by other members</li>
+				</ul>
+			</p>
+			
+			<h3 id="q42">What does reputation give me?</h3>
+			<p>
+				As you amass reputation points you will be given increased permissions throughout the site:
+				<ul style="list-style:none">
+				  <li><span class="highlite"><b>0</b></span> Post surf report</li>
+				  <li><span class="highlite"><b>15</b></span> Vote up</li>
+				  <li><span class="highlite"><b>50</b></span> Vote down</li>
+				</ul>
+			</p>
+			<p>
+			  Down the road, we will be rolling out additional features that will be available to members based on their reputation.
+			  In other words, the better your reputation is, the more goodies you will get... Stay tuned!
+			</p>
+			
+			<h2>Other</h2>
+			<h3 id="q61">How do I contact Surftrottr?</h3>
+			<p>
+			    Please use our <%= link_to "Contact Us form", :controller => "site", :action => "contact" %>. 
+				You can also follow us and contact us on Twitter, <span class="highlite">@surftrottr</span>.
+			</p>
+
+			<div class="spacer"></div>
+		<%= render :partial => "layouts/rnd_box_bottom", :locals => { :name => "white_on_sky" } %>
+		</div>
+		
+	</div>
+	
+	<div class="side_container">
+	  
+	  <div class="side_boxes">
+		<div class="side_box">
+
+  <%= render :partial => "layouts/round_box_top" %> 
+	
+				<h2>
+				  <span class="header">Index</span>
+				  <div class="spacer"></div>
+				</h2>
+
+				<div class="contents">
+				  <div id="faq">
+				    <h3>General</h3>
+				    <ul>
+						<li><%= image_tag "icons/check.png", :align => "top" %><span class="question"><%= link_to "What is Surftrottr?", :anchor => "q01" %></span></li>
+						<li><%= image_tag "icons/check.png", :align => "top" %><span class="question"><%= link_to "Is it free?", :anchor => "q02" %></span></li>
+					    <div class="spacer"></div>
+					</ul>
+					
+					<h3>Surf reports</h3>
+					<ul>
+
+						<li><%= image_tag "icons/check.png", :align => "top" %><span class="question"><%= link_to "How does it work?", :anchor => "q20" %></span></li>
+						<li><%= image_tag "icons/check.png", :align => "top" %><span class="question"><%= link_to "Why would I want to advertise my local surfspot?", :anchor => "q21" %></span></li>
+						<li><%= image_tag "icons/check.png", :align => "top" %>  <span class="question"><%= link_to "How do I post a surf report?", :anchor => "q22" %></span></li>
+						<li><%= image_tag "icons/check.png", :align => "top" %>  <span class="question"><%= link_to "How do I post a report from Surftrottr?", :anchor => "q23" %></span></li>
+						<li><%= image_tag "icons/check.png", :align => "top" %>  <span class="question"><%= link_to "How do I \"tweet\" a surf report?", :anchor => "q24" %></span></li>
+						<li><%= image_tag "icons/check.png", :align => "top" %>  <span class="question"><%= link_to "How do I register my Twitter account Surftrottr?", :anchor => "q25" %></span></li>
+						<li><%= image_tag "icons/check.png", :align => "top" %>  <span class="question"><%= link_to "Can I view and post reports for any surfspot?", :anchor => "q26" %></span></li>
+						<li><%= image_tag "icons/check.png", :align => "top" %>  <span class="question"><%= link_to "How do I write a surf report?", :anchor => "q27" %></span></li>
+						<div class="spacer"></div>
+                    </ul>
+
+					<h3>Reputation</h3>
+					<ul>
+						<li><%= image_tag "icons/check.png", :align => "top" %>  <span class="question"><%= link_to "What is reputation?", :anchor => "q40" %></span></li>
+						<li><%= image_tag "icons/check.png", :align => "top" %>  <span class="question"><%= link_to "How exactly does it work?", :anchor => "q41" %></span></li>
+						<li><%= image_tag "icons/check.png", :align => "top" %>  <span class="question"><%= link_to "What does reputation give me?", :anchor => "q42" %></span></li>
+						<div class="spacer"></div>
+					</ul>
+					
+					<h3>Other</h3>
+					<ul>
+						<li><%= image_tag "icons/check.png", :align => "top" %>  <span class="question"><%= link_to "How do I contact Surftrottr?", :anchor => "q61" %></span></li>
+						<div class="spacer"></div>
+					</ul>
+					<div class="spacer"></div>
+				  </div>
+				</div>
+				
+			    <div class="spacer"></div>
+				
+  <%= render :partial => "layouts/round_box_bottom" %> 
+  
+		</div>
+	  </div>
+		
+	</div>
+</div>

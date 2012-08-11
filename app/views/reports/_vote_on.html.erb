@@ -1,0 +1,9 @@
+<%= link_to image_tag("icons/vote_yes.png"), 
+					{ :url => { :controller => "reports", :action => "yes", :id => report.id },
+            :method => :get, :remote => true },
+					:title => "This report is useful and accurate" %>
+<div class="value" id="score_<%= report.id %>"><%= report.score %></div>
+<%= link_to image_tag("icons/vote_no.png"), 
+                   { :url => { :controller => "reports", :action => "no", :id => report.id },
+                     :method => :get, :remote => true },
+				   :title => "This report is inaccurate and not useful" %>

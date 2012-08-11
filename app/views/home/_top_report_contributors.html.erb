@@ -1,0 +1,29 @@
+<div class="side_box">
+		
+  <%= render :partial => "layouts/round_box_top" %> 
+	
+				<h2>
+				  <span class="header">Top surf report contributors</span>
+				  <div class="spacer"></div>
+				</h2>
+
+				<div class="contents">
+                  <div id="mosaic">
+                    <ul>
+                      <% unless @top_reporters.empty? %>
+                        <% @top_reporters.first(7).each do |reporter| %>
+                          <li>
+                            <span id="thumbnail">
+							  <%= link_to mini_thumbnail_tag(reporter), surfer_path(reporter.screen_name), :title => "#{reporter.screen_name}  (#{reporter.reports.length})" %>
+		                    </span>
+	                      </li>
+                        <% end %>
+                      <% end %>
+                      <div class="spacer"></div>
+					</ul>
+	              </div>
+				</div>
+				
+  <%= render :partial => "layouts/round_box_bottom" %>
+  
+</div>

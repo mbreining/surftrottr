@@ -1,0 +1,15 @@
+<div class="side_box">
+  <%= render "layouts/round_box_top" %>
+
+  <h2>
+    <span class="header">Map</span>
+    <div class="spacer"></div>
+  </h2>
+
+  <div class="contents">
+    <%= raw @map.div(:width => 320, :height => 300) %>
+  </div>
+  <div class="spacer"></div>
+
+  <%= render "layouts/round_box_bottom" %>
+</div>

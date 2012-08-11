@@ -1,0 +1,8 @@
+if !params[:state].nil? and params[:city].nil?
+  page.replace_html "surfspots", :nothing => true
+  page.replace_html "cities", :partial => "cities", :object => params[:state]
+  page.visual_effect :appear, "cities"
+elsif !params[:state].nil? and !params[:city].nil?
+  page.replace_html "surfspots", :partial => "surfspots", :object => [ params[:state], params[:city] ]
+  page.visual_effect :appear, "surfspots"
+end

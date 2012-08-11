@@ -1,0 +1,40 @@
+<div class="layout1">
+  <div class="main_container">
+
+    <div class="mytab">
+
+      <ul class="tabs">
+        <li><%= link_to "All", :controller => 'surfspots', :action => 'index' %></li>
+        <li><%= link_to "Browse by state and city", { :controller => 'surfspots', :action => 'browse' }, :class => 'active' %></li>
+        <li><%= link_to "Search", :controller => 'surfspots', :action => 'search' %></li>
+      </ul>
+
+      <div class="tabs_content">
+
+        <div class="section">
+      <div id="browser">
+        <h2>States</h2>
+        <h2>Cities</h2>
+    <h2>Surfspots</h2>
+
+    <div id="states">
+              <%= render :partial => "states" %>
+        </div>
+
+            <div id="cities">
+           <%= render "cities", :state => "CA" %>
+            </div>
+
+            <div id="surfspots">
+            </div>
+    
+            <div class="spacer"></div>
+          </div>
+        </div>
+		
+      </div>
+	  
+	</div>
+
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<% if @user.user_information.first_name.length != 0 -%>
+Hello <%= @user.user_information.first_name %>,
+<% else -%>
+Hello <%= @user.screen_name %>,
+<% end -%>
+
+Your login information is:
+
+Username: <%= @user.screen_name %>
+Password: <%= @user.password %>
+
+--The Surftrottr team
+surftrottr.com

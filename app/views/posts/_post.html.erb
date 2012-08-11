@@ -1,0 +1,134 @@
+<div class="entry_wrapper" id="visibility_neutral">
+<div class="entry" id="post_<%= post.id %>">
+
+  <div class="body">
+  
+    <div class="side">
+      <% if not hide_surfer %>
+	    <div class="avatar">
+	      <% user = User.find(post.user_id) %>
+	      <%= link_to thumbnail_tag(user), surfer_url(user.screen_name) %>
+	    </div>
+	  <% end %>
+
+	  <div class="spacer"></div>
+	</div>
+	
+	<div class="main" id="<%= layout %>">
+	  <div class="misc">
+	    <div class="actions">
+	      <% if media_size == "mini" || media_size == "thumb" %>
+		    <%= link_to "show", :controller => "posts", :action => "show", :id => post.id %>
+	      <% else %>
+	        <script type="text/javascript" src="http://w.sharethis.com/button/sharethis.js#publisher=d0183d25-49fa-486e-b8f1-5005ccf3f4c2&amp;type=website"></script>
+            <% unless hide_edit_links %>
+	          <%= link_to 'edit', edit_post_path(post) %>
+		      <%= link_to 'remove', post_path(post), :method => "delete", :confirm => 'Are you sure you want to remove this bulletin', :title => "Remove" %>
+		    <% end %>
+		  <% end %>
+	    </div>
+
+	    <% if media_size == "mini" || media_size == "thumb" %>
+	      <% if !post.photos.empty? || !(post.embed_link.nil? || post.embed_link == "") %>
+	        <div class="media">
+              <% if !(post.embed_link.nil? || post.embed_link == "") %>
+		        <div class="video">
+		          <%= link_to image_tag("#{media_size}_video.jpg"), :controller => "posts", :action => "show", :id => post.id %>
+		        </div>
+		      <% elsif !post.photos.empty? %>
+		        <div class="photos">
+		          <%= link_to image_tag(post.photos.first.image.url(media_size)),
+		   	  		          :controller => "posts", :action => "show", :id => post.id %>
+		        </div>
+		      <% end %>
+	        </div>
+	      <% end %>
+	    <% end %>
+	  </div>
+
+	  <div class="content">
+	    <span class="title">
+	      <% if media_size == "mini" %>
+            <%= truncate(sanitize(post.title), :length => 42) %>
+		  <% else %>
+		    <%= sanitize post.title %>
+		  <% end %>
+	    </span>
+  
+	    <span class="description">
+	      <% if media_size == "mini" || media_size == "thumb" %>
+		    <% if post.text.length > 200 %>
+	          <%= truncate(auto_link(post.text.gsub(/\r?\n|\r/, '<br>')), :length => 200) %>
+		      <%= link_to "more", :controller => "posts", :action => "show", :id => post.id %>
+		    <% else %>
+		      <%= auto_link(post.text.gsub(/\r?\n|\r/, '<br>')) %>
+		    <% end %>
+		  <% else %>
+		    <%= auto_link(post.text.gsub(/\r?\n|\r/, '<br>')) %>
+		  <% end %>
+	    </span>
+
+	    <span class="spacer"></span>
+	  </div>
+    </div>
+
+  </div>
+		
+  <div class="footer">
+    <span class="creation_info">
+	  <% user = User.find(post.user_id) %>
+	  Posted <% if not hide_surfer %>by <%= link_to user.screen_name, surfer_path(user.screen_name) %><% end %>
+	  <%= time_ago_in_words post.created_at %> ago
+	</span>
+	
+	<% if not hide_comments %>
+	  <span class="add_comment">
+		<span id="icon">
+		  <%= image_tag "icons/comments.png" %>
+		</span>
+		<span id="link">
+		  <%= link_to post.comments.length == 0 ? "add a comment" : "comments(#{post.comments.count})", 
+							 { :url => { :controller => "comments", :action => "new", :post_id => post.id },
+                 :method => :get, :remote => true },
+							   :href => { :controller => "comments", :action => "new", :post_id => post.id },
+							   :title => "Add a comment" %>
+		</span>
+	  </span>
+	<% end %>
+  </div>
+	
+  <div id="message_<%= post.id %>">
+  </div>
+	  
+  <% if not hide_comments %>
+	<div class="comments">
+	  <div id="comments_for_commentable_<%= post.id %>">
+	  </div>
+	  
+	  <div id="new_comment_form_for_commentable_<%= post.id %>">
+	  </div>
+	</div>
+  <% end %>
+	
+  <% if media_size == "normal" %>
+	<% if !post.photos.empty? || !(post.embed_link.nil? || post.embed_link == "") %>
+	  <div class="media">
+	    <% if !(post.embed_link.nil? || post.embed_link == "") %>
+		  <div class="video">
+		    <%= raw post.embed_link %>
+		  </div>
+		<% end %>
+	    <% if !post.photos.empty? %>
+		  <div class="photos">
+			<% post.photos.each do |photo| %>
+			  <%= image_tag(photo.image.url("normal")) %>
+			<% end %>
+		  </div>
+		<% end %>
+	  </div>
+	<% end %>
+  <% end %>
+  
+  <div class="spacer"></div>
+</div>
+</div>

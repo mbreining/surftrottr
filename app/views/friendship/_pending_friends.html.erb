@@ -1,0 +1,19 @@
+<ul>
+  <% @user.pending_friends.each do |pending_friend| %>
+    <li class="friend">
+	  <span id="thumbnail">
+        <%= link_to thumbnail_tag(pending_friend), surfer_path(pending_friend.screen_name) %>
+	  </span>
+	  <span id="surfer">
+        <%= link_to pending_friend.screen_name, surfer_path(pending_friend.screen_name) %>
+	    (<%= pending_friend.user_information.full_name %>) -
+	  </span>
+	  <span id="actions">
+        <%= link_to "cancel request", 
+                    { :controller => "friendship", :action => "cancel", 
+                      :id => pending_friend.screen_name }, 
+                    :confirm => "Cancel friendship request?" %>
+	  </span>
+	</li>
+  <% end %>
+</ul>
