@@ -21,7 +21,7 @@
 /config/database.yml
 /config/application.rb
 /config/deploy.rb
-/config/gmaps_api_key.yml:w
+/config/gmaps_api_key.yml
 /config/initializers/recaptcha.rb
 /config/initializers/secret_token.rb
 /config/initializers/session_store.rb
