@@ -1,54 +1,53 @@
 <div class="layout1">
   <div class="main_container">
-
     <%= render "shared/error_messages", :target => @message %>
 
-	<div class="myform">
-      <%= form_for :message do |form| %>
-	      <h1>Contact us</h1>
-	      <p class="description">Use this form for questions, comments, feature requests, bug reports, etc</p>
-		
-		  <div class="legend">
-		    <span id="meaning">required field</span><span id="symbol">*</span>
-			<div class="spacer"></div>
-		  </div>
-		
-          <div class="row">
-            <label>
-		      Subject
-			  <span class="required_field">*</span>
-			  <span class="description">Select a subject</span>
-		    </label>
-		    <%= form.select :subject, SiteHelper::CONTACT_FORM_SUBJECTS %>
-	        <div class="spacer"></div>
-		  </div>
+    <div class="myform">
+        <%= form_for :message do |form| %>
+          <h1>Contact us</h1>
+          <p class="description">Use this form for questions, comments, feature requests, bug reports, etc</p>
 
-          <% unless logged_in? %>
-		    <div class="row">
+        <div class="legend">
+          <span id="meaning">required field</span><span id="symbol">*</span>
+        <div class="spacer"></div>
+        </div>
+
+            <div class="row">
               <label>
-			    Email
-			    <span class="description">For us to get back to you</span>
-			  </label>
-              <%= form.text_field :email, :class => "text" %>
-	 	      <div class="spacer"></div>
-		    </div>
-		  <% end %>
-		  
-		  <div class="row">
-            <label>
-			  Message
-			  <span class="required_field">*</span>
-			  <span class="description">1000 chars max.</span>
-			</label>
-            <%= form.text_area :body, :rows => 10, :cols => 20 %>
-	 	    <div class="spacer"></div>
-		  </div>
+            Subject
+          <span class="required_field">*</span>
+          <span class="description">Select a subject</span>
+          </label>
+          <%= form.select :subject, SiteHelper::CONTACT_FORM_SUBJECTS %>
+            <div class="spacer"></div>
+        </div>
 
-		  <%= submit_tag "Send", :class => "submit" %>
-		
-  		  <div class="spacer"></div> 
-	    <% end %>
-	  </div>
+            <% unless logged_in? %>
+          <div class="row">
+                <label>
+            Email
+            <span class="description">For us to get back to you</span>
+          </label>
+                <%= form.text_field :email, :class => "text" %>
+            <div class="spacer"></div>
+          </div>
+        <% end %>
+        
+        <div class="row">
+              <label>
+          Message
+          <span class="required_field">*</span>
+          <span class="description">1000 chars max.</span>
+        </label>
+              <%= form.text_area :body, :rows => 10, :cols => 20 %>
+          <div class="spacer"></div>
+        </div>
 
-  </div>
+        <%= submit_tag "Send", :class => "submit" %>
+      
+          <div class="spacer"></div> 
+        <% end %>
+      </div>
+
+    </div>
 </div>
